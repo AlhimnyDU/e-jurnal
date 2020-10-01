@@ -36,6 +36,35 @@ class Login extends CI_Controller {
 		$this->load->view('login/register');
 		$this->load->view('login/templates/footer');
     }
+
+    public function login_akun(){
+		$email =  $this->input->post('email');
+        $password = $this->input->post('password');
+        $select = $this->Login_model->validasi_akun('tbl_akun','email',$email,$password);
+        if($select){
+			if($select->role_akun == "user"){
+				$this->session->set_userdata('username',$select->nama);
+				$this->session->set_userdata('user',"user");
+                $this->session->set_userdata('id_akun',$select->id_akun);
+                echo $this->session->userdata('id_akun');
+                echo $this->session->userdata('username');
+        		// redirect('user');
+			}else if($select->status == "prodi"){
+				$this->session->set_userdata('username',$select->nama_admin);
+				$this->session->set_userdata('prodi',"prodi");
+				$this->session->set_userdata('id_admin',$select->id_admin);
+				$this->session->set_userdata('id_prodi',$select->id_prodi);
+        		redirect('reviewer');
+			}else if($select->status == "fakultas"){
+				$this->session->set_userdata('username',$select->nama_admin);
+				$this->session->set_userdata('fakultas',"fakultas");
+				$this->session->set_userdata('id_admin',$select->id_admin);
+        		redirect('fakultas');
+            }
+        }else{
+            echo "test";
+        }
+    }
     
     public function addAkun(){
 		$data = array(
@@ -52,9 +81,9 @@ class Login extends CI_Controller {
         );
         $query =  $this->Login_model->insert('tbl_akun',$data);
         if($query){
-        	$this->session->set_flashdata('insert_akun',"Tambah Berhasil");
+        	$this->session->set_flashdata('sukses_registrasi',"Tambah Berhasil");
         }else{
-        	$this->session->set_flashdata('insert_akun',"Tambah Gagal");
+        	$this->session->set_flashdata('gagal_registrasi',"Tambah Gagal");
         }
         redirect('login');
 	}

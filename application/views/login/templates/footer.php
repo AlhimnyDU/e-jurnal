@@ -14,5 +14,16 @@
     <script src="<?php echo base_url() ?>assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo base_url() ?>assets/js/bootstrap.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/sweetalert2.js"></script>
+    <?php if ($this->session->flashdata('sukses_registrasi')): ?>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Proposal Diterima',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+<?php endif; ?>
 </body>
 </html>

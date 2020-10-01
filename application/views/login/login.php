@@ -10,22 +10,17 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                   <h4> Login with facebook <strong> / </strong>Google :</h4>
-                    <br />
-                    <a href="index.html" class="btn btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i>&nbsp; Facebook Account</a>
-                    &nbsp;OR&nbsp;
-                    <a href="index.html" class="btn btn-social btn-google">
-                            <i class="fa fa-google-plus"></i>&nbsp; Google Account</a>
-                    <hr />
-                     <h4> Or Login with <strong>Zontal Account  :</strong></h4>
-                    <br />
-                     <label>Enter Email ID : </label>
-                        <input type="text" class="form-control" />
-                        <label>Enter Password :  </label>
-                        <input type="password" class="form-control" />
-                        <hr />
-                        <a href="index.html" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;Log Me In </a>&nbsp;
+                    <form method="post" action="<?php echo site_url('login/login_akun')?>" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Isikan Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Password" />
+                            <center><button type="submit" class="btn btn-primary">Submit</button></center>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-md-6">
                     <div class="alert alert-info">
