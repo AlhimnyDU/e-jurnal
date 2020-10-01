@@ -10,11 +10,11 @@
         <![endif]-->
     <title>Free Responsive Admin Theme - ZONTAL</title>
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo base_url() ?>assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -46,7 +46,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">
 
-                    <img src="assets/img/logo.png" />
+                    <img src="<?php echo base_url() ?>assets/img/logo.png" />
                 </a>
 
             </div>
@@ -62,7 +62,7 @@
                             <div class="dropdown-menu dropdown-settings">
                                 <div class="media">
                                     <a class="media-left" href="#">
-                                        <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
+                                        <img src="<?php echo base_url() ?>assets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading">Jhon Deo Alex </h4>
