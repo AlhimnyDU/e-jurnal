@@ -13,6 +13,7 @@
     <link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
     <link href="<?php echo base_url() ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -57,7 +58,7 @@
 
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
+                                <span class="fa fa-user" style="font-size: 25px;"></span>
                             </a>
                             <div class="dropdown-menu dropdown-settings">
                                 <div class="media">
@@ -75,11 +76,8 @@
                                 Anim pariatur cliche reprehen derit.
                                 <hr />
                                 <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
-
                             </div>
                         </li>
-
-
                     </ul>
                 </div>
             </div>

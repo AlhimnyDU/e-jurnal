@@ -25,7 +25,7 @@
                         <label>Enter Password :  </label>
                         <input type="password" class="form-control" />
                         <hr />
-                        <a href="index.html" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;Log Me In </a>&nbsp;
+                        <a href="index.html" class="btn btn-info"><span class="fa fa-user"></span> &nbsp;Log Me In </a>&nbsp;
                 </div>
                 <div class="col-md-6">
                     <div class="alert alert-info">
