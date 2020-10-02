@@ -8,16 +8,14 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>E-Jurnal</title>
+    <title>User | E-Jurnal</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
     <link href="<?php echo base_url() ?>assets/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" />
-
-    <link href="<?php echo base_url() ?>assets/css/sweetalert2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,9 +28,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong>mesin@itenas.ac.id
+                    <strong>Email: </strong><?= $akun['email'] ?>
                     &nbsp;&nbsp;
-                    <strong>Phone: </strong>+62 8122 2211 662
+                    <strong>Support: </strong><?= $akun['telp'] ?>
                 </div>
 
             </div>
@@ -60,7 +58,7 @@
 
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <span class="fa fa-user" style="font-size: 25px;"></span>
+                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
                             </a>
                             <div class="dropdown-menu dropdown-settings">
                                 <div class="media">
@@ -68,21 +66,41 @@
                                         <img src="<?php echo base_url() ?>assets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Jhon Deo Alex </h4>
-                                        <h5>Developer & Designer</h5>
-
+                                        <h4 class="media-heading"><?= $akun['nama'] ?></h4>
+                                        <h5><?= $akun['asal_institusi'] ?></h5>
                                     </div>
                                 </div>
                                 <hr />
-                                <h5><strong>Personal Bio : </strong></h5>
-                                Anim pariatur cliche reprehen derit.
+                                <h5><strong>Tanggal Lahir : </strong></h5>
+                                <?= $akun['tgl_lahir'] ?>
+                                <h5><strong>Alamat : </strong></h5>
+                                <?= $akun['alamat'] ?>
+                                
                                 <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
+                                <a href="<?php echo site_url('login/logout') ?>" class="btn btn-danger btn-sm">Logout</a>
+
                             </div>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <!-- LOGO HEADER END-->
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a class="menu-top-active" href="index.html">Dashboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- MENU SECTION END-->

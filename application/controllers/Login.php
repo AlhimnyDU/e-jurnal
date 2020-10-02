@@ -48,14 +48,15 @@ class Login extends CI_Controller {
                 $this->session->set_userdata('id_akun',$select->id_akun);
                 echo $this->session->userdata('id_akun');
                 echo $this->session->userdata('username');
-        		// redirect('user');
-			}else if($select->status == "prodi"){
+        		redirect('user');
+			}else if($select->status == "reviewer"){
 				$this->session->set_userdata('username',$select->nama_admin);
-				$this->session->set_userdata('prodi',"prodi");
-				$this->session->set_userdata('id_admin',$select->id_admin);
-				$this->session->set_userdata('id_prodi',$select->id_prodi);
+				$this->session->set_userdata('reviewer',"reviewer");
+                $this->session->set_userdata('id_akun',$select->id_akun);
+                echo $this->session->userdata('id_akun');
+                echo $this->session->userdata('username');
         		redirect('reviewer');
-			}else if($select->status == "fakultas"){
+			}else if($select->status == "admin"){
 				$this->session->set_userdata('username',$select->nama_admin);
 				$this->session->set_userdata('fakultas',"fakultas");
 				$this->session->set_userdata('id_admin',$select->id_admin);
@@ -67,6 +68,7 @@ class Login extends CI_Controller {
     }
     
     public function addAkun(){
+		$email = $this->input->post('email');
 		$data = array(
             'nama' => $this->input->post('nama'),
             'email' => $this->input->post('email'),
@@ -75,16 +77,81 @@ class Login extends CI_Controller {
 			'telp' => $this->input->post('telp'),
             'tgl_lahir' => $this->input->post('tgl_lahir'),
             'alamat' => $this->input->post('alamat'),
-            'role_akun' => "user",
+			'role_akun' => "user",
+			'aktif' => "n",
             'created' =>  date('Y-m-d H:i:s'),
             'updated' =>  date('Y-m-d H:i:s')
-        );
+		);
+		$token = base64_encode(random_bytes(32));
+		$user_token = [
+			'email' => $email,
+			'token' => $token,
+			'date_created' => time()
+		];
+		$this->db->insert('user_token', $user_token);
         $query =  $this->Login_model->insert('tbl_akun',$data);
         if($query){
-        	$this->session->set_flashdata('sukses_registrasi',"Tambah Berhasil");
+			$this->session->set_flashdata('sukses_registrasi',"Tambah Berhasil");
+			$this->_sendEmail($token,'verify');
         }else{
         	$this->session->set_flashdata('gagal_registrasi',"Tambah Gagal");
         }
         redirect('login');
+	}
+
+	private function _sendEmail($token,$type){
+		$config = [
+			'protocol'  => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_user' => 'anisaputrisetyaningrum@gmail.com',
+			'smtp_pass' => 'Anisa_Putri230300',
+			'smtp_port' =>  465,
+			'mailtype'  => 'html',
+			'charset'   => 'utf-8',
+			'newline'   => "\r\n"
+		];
+
+		$this->load->library('email',$config);
+		$this->email->from('anisaputrisetyaningrum@gmail.com','E-Jurnal');
+		$this->email->to($this->input->post('email'));
+
+		if($type == 'verify'){
+			$this->email->subject('Account Activation');
+			$this->email->message('Click this link to verify your account : <a href="'.base_url(). 'login/verify?email='.$this->input->post('email').'&token='.urlencode($token).'">Activate</a>');
+		}
+		$this->email->send();
+	}
+
+	public function logout(){
+        $this->session->sess_destroy();
+        redirect('login');
+	}
+
+	public function verify(){
+		$email = $this->input->get('email');
+		$token = $this->input->get('token');
+
+		$user = $this->db->get_where('tbl_akun', ['email' => $email])->row_array();
+		if($user)
+		{
+			$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+			if($user_token){
+				if(time() - $user_token['date_created'] < 60*60*24)
+				{
+					$this->db->set('aktif','y');
+					$this->db->where('email', $email);
+					$this->db->update('tbl_akun');
+
+					$this->db->delete('user_token', ['email' => $email]);
+				} else {
+					$this->db->delete('user', ['email' => $email]);
+					$this->db->delete('user_token', ['email' => $email]);
+					redirect('login');
+				}
+			}
+		} else{
+			redirect('login');
+		}
+		redirect('login');
 	}
 }

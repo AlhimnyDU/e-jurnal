@@ -10,7 +10,6 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-<<<<<<< HEAD
                     <form method="post" action="<?php echo site_url('login/login_akun')?>" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
@@ -19,27 +18,12 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Password" />
-                            <center><button type="submit" class="btn btn-primary">Submit</button></center>
+                            <span></span>
+                        </div>
+                        <div class="form-grup">
+                            <center><button type="submit" class="btn btn-primary">Submit</button> <a href="<?php echo site_url()?>/login/register" class="btn btn-success">Register</a></center>
                         </div>
                     </form>
-=======
-                   <h4> Login with facebook <strong> / </strong>Google :</h4>
-                    <br />
-                    <a href="index.html" class="btn btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i>&nbsp; Facebook Account</a>
-                    &nbsp;OR&nbsp;
-                    <a href="index.html" class="btn btn-social btn-google">
-                            <i class="fa fa-google-plus"></i>&nbsp; Google Account</a>
-                    <hr />
-                     <h4> Or Login with <strong>Zontal Account  :</strong></h4>
-                    <br />
-                     <label>Enter Email ID : </label>
-                        <input type="text" class="form-control" />
-                        <label>Enter Password :  </label>
-                        <input type="password" class="form-control" />
-                        <hr />
-                        <a href="index.html" class="btn btn-info"><span class="fa fa-user"></span> &nbsp;Log Me In </a>&nbsp;
->>>>>>> f007e4fb43182ab89d1c7579d0937547a2e40425
                 </div>
                 <div class="col-md-6">
                     <div class="alert alert-info">

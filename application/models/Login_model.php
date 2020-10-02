@@ -9,7 +9,7 @@ class Login_model extends CI_Model{
     }
 
     public function validasi_akun($table,$where,$username,$password){
-  		$query = $this->db->where($where,$username)->get($table);
+  		$query = $this->db->where($where,$username)->where('Aktif','y')->get($table);
   		if($query->num_rows()==1){
   			$hash = $query->row('password');
   			if(password_verify($password,$hash)){
