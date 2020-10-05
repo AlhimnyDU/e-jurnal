@@ -23,12 +23,13 @@ class User extends CI_Controller {
 		$this->load->helper(array('form','url'));
 		$this->load->library('session');
 		$this->load->library('upload');
+		$this->load->model('Login_model');
 		$this->load->database();
 	}
 
 	public function index(){
 		$data['akun'] = $this->db->select('*')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
-		$data['jurnal'] = $this->db->select('*')->from('tbl_jurnal')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
+		$data['jurnal'] = $this->db->select('*')->from('tbl_jurnal')->where('id_akun', $this->session->userdata('id_akun'))->get()->result();
 		$this->load->view('user/templates/header',$data);
 		$this->load->view('user/dasboard');
 		$this->load->view('user/templates/footer');
@@ -39,6 +40,14 @@ class User extends CI_Controller {
         $config['allowed_types']        = 'pdf';
         $this->upload->initialize($config);
 		$this->upload->do_upload('file_jurnal');
+		return $this->upload->data('file_name');
+	}
+
+	public function upload_revisi(){
+        $config['upload_path']          = './assets/upload/jurnal/';
+        $config['allowed_types']        = 'pdf';
+        $this->upload->initialize($config);
+		$this->upload->do_upload('file_revisi');
 		return $this->upload->data('file_name');
 	}
 
@@ -63,5 +72,21 @@ class User extends CI_Controller {
 		);
 		$this->db->insert('tbl_jurnal',$data);
 		redirect('user');
+	}
+
+	public function revisi($id){
+			$data = array(
+				'tipe' => "Pengajuan akhir",
+				'file_jurnal' => $this->upload_revisi(),
+				'note' => $this->input->post('note'),
+				'updated' =>  date('Y-m-d H:i:s')
+			);
+			$query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
+			if($query){
+				$this->session->set_flashdata('success_update',"Update Berhasil");
+			}else{
+				$this->session->set_flashdata('error_update',"Update Gagal");
+			}
+			redirect('user');
 	}
 }

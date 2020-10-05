@@ -28,16 +28,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong><?= $akun['email'] ?>
+                    <strong>Email: </strong>Mesin@itenas.ac.id
                     &nbsp;&nbsp;
-                    <strong>Support: </strong><?= $akun['telp'] ?>
+                    <strong>Telepon: </strong>022 7831258
                 </div>
 
             </div>
         </div>
     </header>
     <!-- HEADER END-->
-    <div class="navbar navbar-inverse set-radius-zero">
+    <div class="navbar navbar-inverse set-radius-zero" style="padding-bottom:70px;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -51,41 +51,6 @@
                 </a>
 
             </div>
-
-            <div class="left-div">
-                <div class="user-settings-wrapper">
-                    <ul class="nav">
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-settings">
-                                <div class="media">
-                                    <a class="media-left" href="#">
-                                        <img src="<?php echo base_url() ?>assets/img/64-64.jpg" alt="" class="img-rounded" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><?= $akun['nama'] ?></h4>
-                                        <h5><?= $akun['asal_institusi'] ?></h5>
-                                    </div>
-                                </div>
-                                <hr />
-                                <h5><strong>Tanggal Lahir : </strong></h5>
-                                <?= $akun['tgl_lahir'] ?>
-                                <h5><strong>Alamat : </strong></h5>
-                                <?= $akun['alamat'] ?>
-                                
-                                <hr />
-                                <a href="<?php echo site_url('login/logout') ?>" class="btn btn-danger btn-sm">Logout</a>
-
-                            </div>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
     <!-- LOGO HEADER END-->
@@ -95,7 +60,8 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top-active" href="index.html">Dashboard</a></li>
+                            <li><a class="menu-top-active" href="<?php echo site_url('user') ?>">Dashboard</a></li>
+                            <li><a class="menu-top-active" href="<?php echo site_url('login/logout') ?>">Log Out</a></li>
                         </ul>
                     </div>
                 </div>

@@ -49,21 +49,21 @@ class Login extends CI_Controller {
                 echo $this->session->userdata('id_akun');
                 echo $this->session->userdata('username');
         		redirect('user');
-			}else if($select->status == "reviewer"){
+			}else if($select->role_akun == "reviewer"){
 				$this->session->set_userdata('username',$select->nama_admin);
 				$this->session->set_userdata('reviewer',"reviewer");
                 $this->session->set_userdata('id_akun',$select->id_akun);
                 echo $this->session->userdata('id_akun');
                 echo $this->session->userdata('username');
         		redirect('reviewer');
-			}else if($select->status == "admin"){
-				$this->session->set_userdata('username',$select->nama_admin);
-				$this->session->set_userdata('fakultas',"fakultas");
-				$this->session->set_userdata('id_admin',$select->id_admin);
-        		redirect('fakultas');
+			}else if($select->role_akun == "admin"){
+				$this->session->set_userdata('username',$select->nama);
+				$this->session->set_userdata('admin',"admin");
+				$this->session->set_userdata('id_admin',$select->id_akun);
+        		redirect('admin');
             }
         }else{
-            echo "test";
+            redirect('login');
         }
     }
     
