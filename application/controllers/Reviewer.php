@@ -45,7 +45,7 @@ class Reviewer extends CI_Controller {
 		);
         $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
         if($query){
-        	$this->session->set_flashdata('success_update',"Update Berhasil");
+        	$this->session->set_flashdata('sukses_update',"Update Berhasil");
         }else{
         	$this->session->set_flashdata('error_update',"Update Gagal");
 		}

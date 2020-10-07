@@ -43,26 +43,26 @@ class Login extends CI_Controller {
         $select = $this->Login_model->validasi_akun('tbl_akun','email',$email,$password);
         if($select){
 			if($select->role_akun == "user"){
+				$this->session->set_flashdata('sukses_login',TRUE);
 				$this->session->set_userdata('username',$select->nama);
 				$this->session->set_userdata('user',"user");
                 $this->session->set_userdata('id_akun',$select->id_akun);
-                echo $this->session->userdata('id_akun');
-                echo $this->session->userdata('username');
         		redirect('user');
 			}else if($select->role_akun == "reviewer"){
+				$this->session->set_flashdata('sukses_login',TRUE);
 				$this->session->set_userdata('username',$select->nama_admin);
 				$this->session->set_userdata('reviewer',"reviewer");
                 $this->session->set_userdata('id_akun',$select->id_akun);
-                echo $this->session->userdata('id_akun');
-                echo $this->session->userdata('username');
         		redirect('reviewer');
 			}else if($select->role_akun == "admin"){
+				$this->session->set_flashdata('sukses_login',TRUE);
 				$this->session->set_userdata('username',$select->nama);
 				$this->session->set_userdata('admin',"admin");
 				$this->session->set_userdata('id_admin',$select->id_akun);
         		redirect('admin');
             }
         }else{
+			$this->session->set_flashdata('gagal_login',TRUE);
             redirect('login');
         }
     }

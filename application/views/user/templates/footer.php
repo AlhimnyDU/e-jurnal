@@ -15,6 +15,7 @@
         <script src="<?php echo base_url() ?>assets/js/bootstrap.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         
         <script>
             $( document ).ready(function() {
@@ -28,5 +29,35 @@
                 });
             });
         </script>
+        <?php if ($this->session->flashdata('sukses_login')): ?>
+        <script>
+            swal({
+                icon: 'success',
+                title: 'Login Berhasil',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('sukses_add')): ?>
+        <script>
+            swal({
+                icon: 'success',
+                title: 'Tambah Berhasil',
+                buttons: false,
+                timer: 1500
+            });
+        </script>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('sukses_update')): ?>
+        <script>
+            swal({
+                icon: 'success',
+                title: 'Update Berhasil',
+                buttons: false,
+                timer: 1500
+            });
+        </script>
+        <?php endif; ?>
     </body>
   </html>

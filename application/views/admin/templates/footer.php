@@ -14,7 +14,7 @@
     <script src="<?php echo base_url() ?>assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo base_url() ?>assets/js/bootstrap.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/sweetalert2.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <!-- jQuery Modal -->
@@ -24,16 +24,35 @@
             $('.datatable').DataTable();
         } );
     </script>
-    <?php if ($this->session->flashdata('sukses_registrasi')): ?>
+    <?php if ($this->session->flashdata('sukses_login')): ?>
     <script>
-        Swal.fire({
+        swal({
             icon: 'success',
-            title: 'Proposal Diterima',
+            title: 'Login Berhasil',
             showConfirmButton: false,
             timer: 1500
         });
     </script>
     <?php endif; ?>
-
+    <?php if ($this->session->flashdata('sukses_add')): ?>
+    <script>
+        swal({
+            icon: 'success',
+            title: 'Tambah Berhasil',
+            buttons: false,
+            timer: 1500
+        });
+    </script>
+    <?php endif; ?>
+    <?php if ($this->session->flashdata('sukses_update')): ?>
+    <script>
+        swal({
+            icon: 'success',
+            title: 'Update Berhasil',
+            buttons: false,
+            timer: 1500
+        });
+    </script>
+    <?php endif; ?>
 </body>
 </html>

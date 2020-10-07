@@ -33,6 +33,16 @@
                                 <input type="password" class="form-control" name="password" placeholder="Password" />
                             </div>
                             <div class="form-group">
+                            <label for="exampleInputPassword1">Bidang</label>
+                                <select name="bidang" class="form-control" required="">
+                                <option value="" disabled selected hidden>Pilih...</option>
+                                <option value="Konversi Energi">Konversi Energi</option>
+                                <option value="Metrologi Industri">Metrologi Industri</option>
+                                <option value="Metalurgi Fisik">Metalurgi Fisik</option>
+                                <option value="Konstruksi Mesin">Konstruksi Mesin</option>
+                                </select> 
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputEmail1">Asal Institusi/Perguruan Tinggi</label>
                                 <input type="text" class="form-control" name="asal_institusi" placeholder="Isikan Nama Institusi"/>
                             </div>

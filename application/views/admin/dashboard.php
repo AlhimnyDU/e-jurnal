@@ -10,16 +10,16 @@
           <div class="dashboard-div-wrapper bk-clr-one">
             <i class="fa fa-users dashboard-div-icon"></i>
             <div class="progress progress-striped active">
-              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $jml_user['total'] ?>" aria-valuemin="0" aria-valuemax="<?php echo $jml_user['total'] ?>" style="width: <?php echo $percent ?>%"></div>
             </div>
             <h5>Pendaftar (<?php echo $jml_user['total'] ?>)</h5>
           </div>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6">
           <div class="dashboard-div-wrapper bk-clr-two">
-            <i class="fa fa-upload dashboard-div-icon"></i>
+            <i class="fa fa-clipboard dashboard-div-icon"></i>
             <div class="progress progress-striped active">
-              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
+              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $jml_jurnal['total'] ?>" aria-valuemin="0" aria-valuemax="<?php echo $jml_user['total'] ?>" style="width:<?php  $p_jurnal = $jml_jurnal['total']/$jml_user['total']*100; echo $p_jurnal; ?>%"></div>
             </div>
             <h5>Upload Jurnal (<?php echo $jml_jurnal['total'] ?>)</h5>
           </div>
@@ -28,7 +28,7 @@
           <div class="dashboard-div-wrapper bk-clr-three">
             <i class="fa fa-file dashboard-div-icon"></i>
             <div class="progress progress-striped active">
-              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="<?php echo $jml_jurnal_rev['total'] ?>" aria-valuemin="0" aria-valuemax="<?php echo $jml_jurnal['total'] ?>" style="width: <?php $p_jurnal_rev = $jml_jurnal_rev['total']/$jml_jurnal['total']*100; echo $p_jurnal_rev; ?>%"></div>
             </div>
             <h5>Revisi Jurnal Upload Jurnal (<?php echo $jml_jurnal_rev['total'] ?>)</h5>
           </div>
@@ -37,7 +37,7 @@
           <div class="dashboard-div-wrapper bk-clr-four">
             <i class="fa fa-check dashboard-div-icon"></i>
             <div class="progress progress-striped active">
-              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="<?php echo $jml_jurnal_fin['total'] ?>" aria-valuemin="0" aria-valuemax="<?php echo $jml_jurnal['total'] ?>" style="width: <?php $p_jurnal_fin = $jml_jurnal_fin['total']/$jml_jurnal['total']*100; echo $p_jurnal_fin; ?>%"></div>
             </div>
             <h5>Selesai Review (<?php echo $jml_jurnal_fin['total'] ?>)</h5>
           </div>
@@ -57,8 +57,10 @@
                             <tr>
                                 <th width="5%">No</th>
                                 <th>Judul</th>
+                                <th width="15%">Bidang</th>
                                 <th width="20%">Author</th>
-                                <th width="15%">Aksi</th>
+                                <th width="10%">File</th>
+                                <th width="10%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,9 +69,13 @@
                           <tr>
                             <td align="center"><?php echo $no ?></td>
                             <td><?php echo $row->nama_jurnal ?></td>
+                            <td><?php echo $row->bidang ?></td>
                             <td><?php echo $row->nama ?></td>
                             <td>
-                              <a class="btn btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a> | <a class="btn btn-primary" href="" data-toggle="modal" data-target="#reviewerModal<?php echo $row->id_jurnal?>"><i class="fa fa-user-plus"></i></a>
+                            <a class="btn btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
+                            </td>
+                            <td>
+                              <a class="btn btn-primary" href="" data-toggle="modal" data-target="#reviewerModal<?php echo $row->id_jurnal?>"><i class="fa fa-check"></i></a>  | <a class="btn btn-danger" href="" data-toggle="modal" data-target="#tolakModal<?php echo $row->id_jurnal?>"><i class="fa fa-times"></i></a>
                             </td>
                           </tr>
                         <?php $no++; } ?>
@@ -138,6 +144,7 @@
                                     <th width="5%">No</th>
                                     <th>Judul</th>
                                     <th width="20%">Author</th>
+                                    <th width="20%">Status</th>
                                     <th width="20%">Aksi</th>
                                 </tr>
                             </thead>
@@ -148,6 +155,7 @@
                                 <td align="center"><?php echo $no ?></td>
                                 <td><?php echo $row->nama_jurnal ?></td>
                                 <td><?php echo $row->nama ?></td>
+                            <td><?php if($row->tipe=="Selesai"){?>Disetujui<?php }else if($row->tipe=="Ditolak"){?>Ditolak<?php } ?></td>
                                 <td>
                                 <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
                                 </td>
@@ -218,6 +226,7 @@
                                     <th width="5%">No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
+                                    <th>Bidang</th>
                                     <th>No Telp</th>
                                     <th width="20%">Aksi</th>
                                 </tr>
@@ -229,6 +238,7 @@
                                     <td><?php echo $no ?></td>
                                     <td><?php echo $row->nama ?></td>
                                     <td><?php echo $row->email ?></td>
+                                    <td><?php echo $row->bidang ?></td>
                                     <td><?php echo $row->telp ?></td>
                                     <td>
                                       <a class="btn btn-sm btn-default" href="<?php echo site_url('admin/job/'.$row->id_akun)?>"><i class="fa fa-briefcase"></i></a> | <a class="btn btn-sm btn-warning" href="" data-toggle="modal" data-target="#lupa2Modal<?php echo $row->id_akun?>"><i class="fa fa-key"></i></a> | <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#edit2Modal<?php echo $row->id_akun?>"><i class="fa fa-edit"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/deleteAkun/'.$row->id_akun)?>"><i class="fa fa-trash"></i></a>
@@ -320,14 +330,42 @@
                             <div class="form-group">
                                 <select name="reviewer" class="form-control" required="">
                                     <option value="" disabled selected hidden>Pilih...</option>
-                                    <?php foreach($reviewer as $r){ ?>
+                                    <?php 
+                                      foreach($reviewer as $r){ 
+                                        if($row->bidang==$r->bidang){
+                                    ?>
                                     <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
-                                    <?php } ?>
+                                    <?php }} ?>
                                 </select>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary pull-right">Update</button>
-                                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Ok</button>
+                                <button class="btn btn-danger pull-right" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>  
+        </div>
+    </div>
+  </div>
+  <div id="tolakModal<?php echo $row->id_jurnal?>" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">Alasan Penolakan</h3>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="<?php echo site_url('admin/tolak_jurnal/').$row->id_jurnal?>" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col col-lg-12">
+                            <div class="form-group">
+                                <textarea class="form-control" name="jawaban" rows=3></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Ok</button>
+                                <button class="btn btn-danger pull-right" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>

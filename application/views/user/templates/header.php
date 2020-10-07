@@ -16,6 +16,9 @@
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css">
+    <script src="https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js"></script>
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,7 +64,7 @@
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active" href="<?php echo site_url('user') ?>">Dashboard</a></li>
-                            <li><a class="menu-top-active" href="<?php echo site_url('login/logout') ?>">Log Out</a></li>
+                            <li><a class="menu-top" href="<?php echo site_url('login/logout') ?>">Log Out</a></li>
                         </ul>
                     </div>
                 </div>

@@ -28,15 +28,16 @@ class Admin extends CI_Controller {
 	}
 
 	public function index(){
-		$data['jml'] = $this->db->select('COUNT(*) as totalAkun')->get('tbl_akun')->result();
+		$data['jml'] = $this->db->select('COUNT(*) as totalAkun')->get('tbl_akun')->row_array();
 		$data['jml_user'] = $this->db->select('COUNT(*) as total')->where('role_akun', "user")->get('tbl_akun')->row_array();
-		$data['jml_jurnal'] = $this->db->select('COUNT(*) as total')->where('tipe', "Awal")->get('tbl_jurnal')->row_array();
-		$data['jml_jurnal_rev'] = $this->db->select('COUNT(*) as total')->where('tipe', "Revisi")->get('tbl_jurnal')->row_array();
+		$data['percent'] = $data['jml_user']['total']/$data['jml']['totalAkun']*100;
+		$data['jml_jurnal'] = $this->db->select('COUNT(*) as total')->get('tbl_jurnal')->row_array();
+		$data['jml_jurnal_rev'] = $this->db->select('COUNT(*) as total')->where('tipe', "Ditolak")->get('tbl_jurnal')->row_array();
 		$data['jml_jurnal_fin'] = $this->db->select('COUNT(*) as total')->where('tipe', "Selesai")->get('tbl_jurnal')->row_array();
 		$data['akun'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "user")->get()->result();
-		$data['jurnal'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Awal")->get()->result();
+		$data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Awal")->get()->result();
 		$data['jurnal_ulas'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Sedang diulas")->get()->result();
-		$data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Selesai")->get()->result();
+		$data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Selesai")->or_where('tipe', "Ditolak")->get()->result();
         $data['reviewer'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "reviewer")->get()->result();
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/dashboard',$data);
@@ -92,7 +93,8 @@ class Admin extends CI_Controller {
 		$data = array(
             'nama' => $this->input->post('nama'),
             'email' => $this->input->post('email'),
-            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+			'bidang' => $this->input->post('bidang'),
             'asal_institusi' => $this->input->post('asal_institusi'),
 			'telp' => $this->input->post('telp'),
             'tgl_lahir' => $this->input->post('tgl_lahir'),
@@ -104,9 +106,9 @@ class Admin extends CI_Controller {
 		);
         $query =  $this->Login_model->insert('tbl_akun',$data);
         if($query){
-			$this->session->set_flashdata('sukses_registrasi',"Tambah Berhasil");
+			$this->session->set_flashdata('sukses_add',TRUE);
         }else{
-        	$this->session->set_flashdata('gagal_registrasi',"Tambah Gagal");
+        	$this->session->set_flashdata('gagal_add',TRUE);
         }
         redirect('admin');
 	}
@@ -115,6 +117,21 @@ class Admin extends CI_Controller {
 		$data = array(
 			'id_reviewer' => $this->input->post('reviewer'),
 			'tipe' =>  "Sedang diulas",
+			'updated' =>  date('Y-m-d H:i:s')
+		);
+        $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
+        if($query){
+			$this->session->set_flashdata('sukses_update',"update Berhasil");
+        }else{
+        	$this->session->set_flashdata('gagal_update',"update Gagal");
+        }
+        redirect('admin');
+	}
+
+	public function tolak_jurnal($id){
+		$data = array(
+			'jawaban' => $this->input->post('jawaban'),
+			'tipe' =>  "Dikembalikan",
 			'updated' =>  date('Y-m-d H:i:s')
 		);
         $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
@@ -160,10 +177,10 @@ class Admin extends CI_Controller {
 		$this->db->insert('user_token', $user_token);
         $query =  $this->Login_model->insert('tbl_akun',$data);
         if($query){
-			$this->session->set_flashdata('sukses_registrasi',"Tambah Berhasil");
+			$this->session->set_flashdata('sukses_add',TRUE);
 			$this->_sendEmail($token,'verify');
         }else{
-        	$this->session->set_flashdata('gagal_registrasi',"Tambah Gagal");
+        	$this->session->set_flashdata('gagal_add',TRUE);
         }
         redirect('admin');
 	}
@@ -195,7 +212,7 @@ class Admin extends CI_Controller {
 		$data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 		$query =  $this->Login_model->update('tbl_akun','id_akun',$id,$data);
         if($query){
-        	$this->session->set_flashdata('success_update',"Update Berhasil");
+        	$this->session->set_flashdata('sukses_update',"Update Berhasil");
         }else{
         	$this->session->set_flashdata('error_update',"Update Gagal");
 		}
@@ -219,7 +236,7 @@ class Admin extends CI_Controller {
 		);
         $query =  $this->Login_model->update('tbl_akun','id_akun',$id,$data);
         if($query){
-        	$this->session->set_flashdata('success_update',"Update Berhasil");
+        	$this->session->set_flashdata('sukses_update',"Update Berhasil");
         }else{
         	$this->session->set_flashdata('error_update',"Update Gagal");
 		}

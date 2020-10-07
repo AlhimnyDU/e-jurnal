@@ -62,6 +62,7 @@ class User extends CI_Controller {
 	public function addJurnal(){
 		$data = array(
 			'nama_jurnal' => $this->input->post('nama_jurnal'),
+			'bidang'  => $this->input->post('bidang'),
 			'file_jurnal' => $this->upload_jurnal(),
 			'file_bayar'  => $this->upload_bayar(),
 			'id_akun' => $this->session->userdata('id_akun'),
@@ -70,7 +71,12 @@ class User extends CI_Controller {
 			'created' => date('Y-m-d H:i:s'),
 			'updated' => date('Y-m-d H:i:s'),
 		);
-		$this->db->insert('tbl_jurnal',$data);
+		$query = $this->db->insert('tbl_jurnal',$data);
+		if($query){
+			$this->session->set_flashdata('sukses_add',TRUE);
+		}else{
+			$this->session->set_flashdata('error_add',TRUE);
+		}
 		redirect('user');
 	}
 
@@ -83,10 +89,25 @@ class User extends CI_Controller {
 			);
 			$query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
 			if($query){
-				$this->session->set_flashdata('success_update',"Update Berhasil");
+				$this->session->set_flashdata('sukses_update',"Update Berhasil");
 			}else{
 				$this->session->set_flashdata('error_update',"Update Gagal");
 			}
 			redirect('user');
 	}
+
+	public function pengajuan_ulang($id){
+		$data = array(
+			'tipe' => "Awal",
+			'file_jurnal' => $this->upload_revisi(),
+			'updated' =>  date('Y-m-d H:i:s')
+		);
+		$query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
+		if($query){
+			$this->session->set_flashdata('sukses_update',"Update Berhasil");
+		}else{
+			$this->session->set_flashdata('error_update',"Update Gagal");
+		}
+		redirect('user');
+}
 }
