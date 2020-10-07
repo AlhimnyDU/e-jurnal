@@ -155,9 +155,13 @@
                                 <td align="center"><?php echo $no ?></td>
                                 <td><?php echo $row->nama_jurnal ?></td>
                                 <td><?php echo $row->nama ?></td>
-                            <td><?php if($row->tipe=="Selesai"){?>Disetujui<?php }else if($row->tipe=="Ditolak"){?>Ditolak<?php } ?></td>
+                            <td><?php if($row->tipe=="Selesai"){?>Disetujui<?php }else if($row->tipe=="Ditolak"){?>Ditolak<?php }else if($row->tipe=="Publish"){ ?>Publish<?php } ?></td>
                                 <td>
-                                <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
+                                <!-- <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a> |  -->
+                                <?php if($row->tipe!="Publish"){ ?>
+                                  <a class="btn btn-sm btn-danger" title="Publish" href="<?php echo site_url('admin/publish/'.$row->id_jurnal)?>"><i class="fa fa-eye"></i></a> | <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
+                                <?php } ?>
+                                  <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
                                 </td>
                               </tr>
                             <?php $no++; } ?>

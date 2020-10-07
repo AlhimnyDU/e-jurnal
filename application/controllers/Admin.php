@@ -37,7 +37,7 @@ class Admin extends CI_Controller {
 		$data['akun'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "user")->get()->result();
 		$data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Awal")->get()->result();
 		$data['jurnal_ulas'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Sedang diulas")->get()->result();
-		$data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Selesai")->or_where('tipe', "Ditolak")->get()->result();
+		$data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Selesai")->or_where('tipe', "Ditolak")->or_where('tipe','Publish')->get()->result();
         $data['reviewer'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "reviewer")->get()->result();
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/dashboard',$data);
@@ -117,6 +117,20 @@ class Admin extends CI_Controller {
 		$data = array(
 			'id_reviewer' => $this->input->post('reviewer'),
 			'tipe' =>  "Sedang diulas",
+			'updated' =>  date('Y-m-d H:i:s')
+		);
+        $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
+        if($query){
+			$this->session->set_flashdata('sukses_update',"update Berhasil");
+        }else{
+        	$this->session->set_flashdata('gagal_update',"update Gagal");
+        }
+        redirect('admin');
+	}
+
+	public function publish($id){
+		$data = array(
+			'tipe' =>  "Publish",
 			'updated' =>  date('Y-m-d H:i:s')
 		);
         $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);

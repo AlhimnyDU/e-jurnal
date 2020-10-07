@@ -46,8 +46,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="<?php echo base_url() ?>assets/img/logo.png" />
+                <a class="navbar-brand" href="<?php echo base_url() ?>home">
+                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" />
                 </a>
             </div>
         </div>
