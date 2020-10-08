@@ -51,12 +51,23 @@ class User extends CI_Controller {
 		return $this->upload->data('file_name');
 	}
 
-	public function upload_bayar(){
+	public function upload_bayar($id){
         $config['upload_path']          = './assets/upload/bayar/';
         $config['allowed_types']        = 'pdf';
         $this->upload->initialize($config);
 		$this->upload->do_upload('file_bayar');
-		return $this->upload->data('file_name');
+		$data = array(
+			'file_bayar' => $this->upload->data('file_name'),
+			'created' => date('Y-m-d H:i:s'),
+			'updated' => date('Y-m-d H:i:s'),
+		);
+		$query = $this->db->where('id_jurnal',$id)->update('tbl_jurnal',$data);
+		if($query){
+			$this->session->set_flashdata('add_bayar',TRUE);
+		}else{
+			$this->session->set_flashdata('error_add',TRUE);
+		}
+		redirect('user');
 	}
 
 	public function addJurnal(){
@@ -64,7 +75,6 @@ class User extends CI_Controller {
 			'nama_jurnal' => $this->input->post('nama_jurnal'),
 			'bidang'  => $this->input->post('bidang'),
 			'file_jurnal' => $this->upload_jurnal(),
-			'file_bayar'  => $this->upload_bayar(),
 			'id_akun' => $this->session->userdata('id_akun'),
 			'note'	=> $this->input->post('note'),
 			'tipe'	=> "Awal",

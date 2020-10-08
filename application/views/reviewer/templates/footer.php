@@ -2,7 +2,7 @@
             <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                © 2015 YourCompany | By : <a href="/" target="_blank">DesignBootstrap</a>
+                © SEMINAR NASIONAL REKAYASA DAN APLIKASI TEKNIK MESIN DI INDUSTRI
                 </div>
             </div>
             </div>

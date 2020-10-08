@@ -48,17 +48,18 @@
               </div>
               <form method="POST" action="<?php echo site_url('user/addJurnal')?>" enctype="multipart/form-data">
               <div class="panel-body">
-                <label>Journal Name :</label> <input type="text" name="nama_jurnal" class="form-control">
+                <label>Journal Name :</label> <input type="text" name="nama_jurnal" class="form-control" required>
                 <label>Bidang :</label>
                 <select name="bidang" class="form-control" required="">
                   <option value="" disabled selected hidden>Pilih...</option>
-                  <option value="Konversi Energi">Konversi Energi</option>
-                  <option value="Metrologi Industri">Metrologi Industri</option>
-                  <option value="Metalurgi Fisik">Metalurgi Fisik</option>
-                  <option value="Konstruksi Mesin">Konstruksi Mesin</option>
+                  <option value="TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK">TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK</option>
+                  <option value="TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT">TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT</option>
+                  <option value="TEKNOLOGI KONVERSI ENERGI">TEKNOLOGI KONVERSI ENERGI</option>
+                  <option value="TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL">TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL</option>
+                  <option value="TEKNOLOGI MANUFAKTUR DAN METROLOGI">TEKNOLOGI MANUFAKTUR DAN METROLOGI</option>
                 </select> 
                 <label>Upload Journal File :</label> <input type="file" class="dropify" data-height="75" name="file_jurnal" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
-                <label>Upload Payment Bill :</label> <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
+                <!-- <label>Upload Payment Bill :</label> <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf"> -->
                 <label>Note :</label> <textarea rows="3" class="form-control" name="note"></textarea>
                 <hr>
                 <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-envelope"></span> Submit</button>
@@ -227,21 +228,33 @@
                                 </a>
                               </div>
                               <div class="line"></div>
-                              <div class="step" data-target="#test-l-4">
-                                <a href="#">
-                                <?php if($row->tipe=="Selesai"){?>
-                                  <span class="bs-stepper-circle" style="background-color:green;"><i class="fa fa-check"></i></span>
-                                  <span class="bs-stepper-label">Disetujui</span>
-                                <?php }else if($row->tipe=="Ditolak"){?>
-                                  <span class="bs-stepper-circle" style="background-color:red;"><i class="fa fa-times"></i></span>
-                                  <span class="bs-stepper-label">Ditolak</span>
-                                <?php }else{ ?>
-                                  <span class="bs-stepper-circle">4</span>
-                                  <span class="bs-stepper-label">Final</span>
-                                <?php } ?>
-                                </a>
-                              </div>
+                                <div class="step" data-target="#test-l-4">
+                                  <a href="#">
+                                  <?php if($row->tipe=="Selesai"){?>
+                                    <span class="bs-stepper-circle" style="background-color:green;"><i class="fa fa-check"></i></span>
+                                    <span class="bs-stepper-label">Disetujui</span>
+                                  <?php }else if($row->tipe=="Ditolak"){?>
+                                    <span class="bs-stepper-circle" style="background-color:red;"><i class="fa fa-times"></i></span>
+                                    <span class="bs-stepper-label">Ditolak</span>
+                                  <?php }else{ ?>
+                                    <span class="bs-stepper-circle">4</span>
+                                    <span class="bs-stepper-label">Final</span>
+                                  <?php } ?>
+                                  </a>
+                                </div>
                             </div>
+                            <?php if($row->tipe=="Selesai"){?>
+                            <form action="<?php echo site_url() ?>user/upload_bayar/<?= $row->id_jurnal ?>" method="POST" enctype="multipart/form-data">
+                              <div class="form-grup">
+                                  <label>Upload Payment Bill :</label> 
+                                  <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf" data-default-file="<?php echo site_url() ?>assets/upload/bayar/<?= $row->file_bayar ?>">
+                              </div>
+                              <div class="modal-footer">
+                                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary pull-right">Submit</button> 
+                            </div>
+                            </form>
+                            <?php } ?>
                           </div>
                         </div>
                     </div>

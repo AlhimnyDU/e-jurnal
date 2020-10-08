@@ -2,7 +2,7 @@
             <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                © 2015 YourCompany | By : <a href="/" target="_blank">DesignBootstrap</a>
+                © SEMINAR NASIONAL REKAYASA DAN APLIKASI TEKNIK MESIN DI INDUSTRI 
                 </div>
             </div>
             </div>
@@ -54,6 +54,26 @@
             swal({
                 icon: 'success',
                 title: 'Update Berhasil',
+                buttons: false,
+                timer: 1500
+            });
+        </script>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('sukses_add')): ?>
+        <script>
+            swal({
+                icon: 'success',
+                title: 'Jurnal berhasil Diupload',
+                buttons: false,
+                timer: 1500
+            });
+        </script>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('sukses_bayar')): ?>
+        <script>
+            swal({
+                icon: 'success',
+                title: 'Bukti Pembayaran berhasil di Upload',
                 buttons: false,
                 timer: 1500
             });
