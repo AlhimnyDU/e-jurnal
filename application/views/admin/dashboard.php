@@ -144,8 +144,8 @@
                                     <th width="5%">No</th>
                                     <th>Judul</th>
                                     <th width="20%">Author</th>
-                                    <th width="20%">Status</th>
-                                    <th width="20%">Aksi</th>
+                                    <th width="15%">Status</th>
+                                    <th width="30%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -159,9 +159,9 @@
                                 <td>
                                 <!-- <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a> |  -->
                                 <?php if($row->tipe!="Publish"){ ?>
-                                  <a class="btn btn-sm btn-danger" title="Publish" href="<?php echo site_url('admin/publish/'.$row->id_jurnal)?>"><i class="fa fa-eye"></i></a>
+                                  | <a class="btn btn-sm btn-danger" title="Publish" href="<?php echo site_url('admin/publish/'.$row->id_jurnal)?>"><i class="fa fa-eye"></i></a>
                                 <?php } ?>
-                                  <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
+                                  | <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a> |
                                 </td>
                               </tr>
                             <?php $no++; } ?>

@@ -188,7 +188,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 class="modal-title">Revisi</h3>
+                <h3 class="modal-title">Timeline</h3>
             </div>
             <div class="modal-body">
                     <div class="row">
@@ -244,9 +244,10 @@
                                 </div>
                             </div>
                             <?php if($row->tipe=="Selesai"){?>
+                              <hr>
                             <form action="<?php echo site_url() ?>user/upload_bayar/<?= $row->id_jurnal ?>" method="POST" enctype="multipart/form-data">
                               <div class="form-grup">
-                                  <label>Upload Payment Bill :</label> 
+                                  <label>Upload Bukti Pembayaran :</label> 
                                   <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf" data-default-file="<?php echo site_url() ?>assets/upload/bayar/<?= $row->file_bayar ?>">
                               </div>
                               <div class="modal-footer">

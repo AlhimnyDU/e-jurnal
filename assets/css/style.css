@@ -78,7 +78,7 @@ background-color:#F0677C;
    HEADER SECTION STYLES
  ============================================================ */
 header {
-    background-color: #F0677C;
+    background-color: #ff8043;
     color: #fff;
     padding: 10px;
     text-align: right;
@@ -169,24 +169,24 @@ header {
 }
 
 .menu-top-active {
-    background-color: #C36464;
+    background-color: #ff8043;
 }
 
 .menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
-    background-color: #F0677C!important;
+    background-color:#ff8043!important;
 }
 
 .menu-section .dropdown-menu > li > a:hover,.menu-section .dropdown-menu > li > a:focus {
-    background-color: #F0677C!important;
+    background-color:#ff8043!important;
 }
 
 .navbar-inverse {
-    background-color: #C36464;
+    background-color:#222;
     border-color: transparent;
 }
 
 .navbar-toggle {
-    background-color: #F0677C;
+    background-color:#ff8043;
     border: 1px solid #fff;
 }
 
@@ -200,7 +200,7 @@ footer {
     padding: 10px;
     color: #fff;
     font-size: 12px;
-    background-color: #C36464;
+    background-color:#ff8043;
 }
 
     footer a, footer a:hover {

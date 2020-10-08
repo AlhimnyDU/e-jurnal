@@ -115,19 +115,19 @@
             <div class="col-12 col-md-6">
                 <p align="justify">
                 Seminar Nasional Rekayasa dan Aplikasi Teknik Mesin di Industri merupakan agenda tahunan
-civitas akademika Jurusan Teknik Mesin, FTI – Itenas, kegiatan ini sudah berlangsung sejak
-tahun 2002. Seminar ini merupakan forum diskusi dan tukar informasi kegiatan studi dan
-penelitian yang telah dilakukan oleh para peneliti dari perguruan tinggi (dosen dan mahasiswa),
-instansi penelitian maupun praktisi industri, khususnya yang terkait dengan bidang teknik mesin,
-sehingga dapat meningkatan sinergi diantara keduanya.
+                civitas akademika Jurusan Teknik Mesin, FTI – Itenas, kegiatan ini sudah berlangsung sejak
+                tahun 2002. Seminar ini merupakan forum diskusi dan tukar informasi kegiatan studi dan
+                penelitian yang telah dilakukan oleh para peneliti dari perguruan tinggi (dosen dan mahasiswa),
+                instansi penelitian maupun praktisi industri, khususnya yang terkait dengan bidang teknik mesin,
+                sehingga dapat meningkatan sinergi diantara keduanya.
                 </p>
             </div>
             <div class="col-12 col-md-6">
                 <p align="justify">
                 Pada seminar kali ini, berhasil terkumpul 25 makalah yang dikelompokkan ke dalam lima sub
-topik yaitu Teknologi Konversi Energi, Teknologi Manufaktur dan Metrologi, Teknologi Bahan
-dan Material Komposit, Teknologi Perancangan dan Pengembangan Produk, dan koleksi
-lengkap diberikan dalam bentuk online di website Itenas. 
+                topik yaitu Teknologi Konversi Energi, Teknologi Manufaktur dan Metrologi, Teknologi Bahan
+                dan Material Komposit, Teknologi Perancangan dan Pengembangan Produk, dan koleksi
+                lengkap diberikan dalam bentuk online di website Itenas. 
                 </p>
             </div>
         </div>
@@ -144,7 +144,7 @@ lengkap diberikan dalam bentuk online di website Itenas.
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-                <font size="5">
+                <font size="4">
                     Editor :
                     <br>
                         1. M. Azis Mahardika, M.T.
@@ -159,7 +159,7 @@ lengkap diberikan dalam bentuk online di website Itenas.
                 </font>
             </div>
             <div class="col-12 col-md-6">
-                <font size="5">
+                <font size="4">
                 Pengarah :
                 <br>
                 1. DR. Agus Hermanto, Ir., M.T.
