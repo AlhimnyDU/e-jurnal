@@ -57,10 +57,12 @@
                   <option value="TEKNOLOGI KONVERSI ENERGI">TEKNOLOGI KONVERSI ENERGI</option>
                   <option value="TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL">TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL</option>
                   <option value="TEKNOLOGI MANUFAKTUR DAN METROLOGI">TEKNOLOGI MANUFAKTUR DAN METROLOGI</option>
+                  <option value="Lainnya">Lainnya</option>
                 </select> 
                 <label>Upload Journal File :</label> <input type="file" class="dropify" data-height="75" name="file_jurnal" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
                 <!-- <label>Upload Payment Bill :</label> <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf"> -->
                 <label>Note :</label> <textarea rows="3" class="form-control" name="note"></textarea>
+                <input type="checkbox" required> Saya menyetujui segala ketentuan yang berlaku
                 <hr>
                 <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-envelope"></span> Submit</button>
               </div>

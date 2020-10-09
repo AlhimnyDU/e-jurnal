@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Please Login To Enter </h4>
+                    <h4 class="page-head-line">Log In</h4>
 
                 </div>
 
@@ -21,7 +21,9 @@
                             <span></span>
                         </div>
                         <div class="form-grup">
-                            <center><button type="submit" class="btn btn-primary">Submit</button> <a href="<?php echo site_url()?>/login/register" class="btn btn-success">Register</a></center>
+                            <center><button type="submit" class="btn btn-primary">Log In</button> <hr> 
+                            <p>Tidak memiliki akun ? Silahkan Registrasi</p>
+                            <a href="<?php echo site_url()?>/login/register" class="btn btn-success">Register</a></center>
                         </div>
                     </form>
                 </div>

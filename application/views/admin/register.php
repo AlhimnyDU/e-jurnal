@@ -36,10 +36,12 @@
                             <label for="exampleInputPassword1">Bidang</label>
                                 <select name="bidang" class="form-control" required="">
                                 <option value="" disabled selected hidden>Pilih...</option>
-                                <option value="Konversi Energi">Konversi Energi</option>
-                                <option value="Metrologi Industri">Metrologi Industri</option>
-                                <option value="Metalurgi Fisik">Metalurgi Fisik</option>
-                                <option value="Konstruksi Mesin">Konstruksi Mesin</option>
+                                <option value="TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK">TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK</option>
+                                <option value="TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT">TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT</option>
+                                <option value="TEKNOLOGI KONVERSI ENERGI">TEKNOLOGI KONVERSI ENERGI</option>
+                                <option value="TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL">TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL</option>
+                                <option value="TEKNOLOGI MANUFAKTUR DAN METROLOGI">TEKNOLOGI MANUFAKTUR DAN METROLOGI</option>
+                                <option value="Lainnya">Lainnya</option>
                                 </select> 
                             </div>
                             <div class="form-group">
