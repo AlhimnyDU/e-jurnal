@@ -261,7 +261,7 @@
                 <tr>
                     <th>
                         <i class="fas fa-files"></i>
-                        <span>Jurnal Publikasi</span>
+                        <span>Makalah yang dipublikasi</span>
                     </th>
                     <th></th>
                     <th></th>
@@ -301,27 +301,22 @@
     <div class="container">
         <div class="section_title mb50">
             <h3 class="title">
-                PATNER
+                PARTNER
             </h3>
         </div>
         <div class="brand_carousel owl-carousel">
+            
             <div class="brand_item text-center">
                 <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b1.png" alt="brand">
             </div>
-            <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b1.png" alt="brand">
+            <!-- <div class="brand_item text-center">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b2.jpg" alt="brand">
             </div>
             <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b1.png" alt="brand">
-            </div>
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b3.jpg" alt="brand">
+            </div> -->
             <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b1.png" alt="brand">
-            </div>
-            <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b1.png" alt="brand">
-            </div>
-            <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b1.png" alt="brand">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b4.png" alt="brand">
             </div>
         </div>
     </div>

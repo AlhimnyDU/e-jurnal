@@ -28,45 +28,27 @@
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <div class="alert alert-info">
-                        This is a free bootstrap admin template with basic pages you need to craft your project. 
-                        Use this template for free to use for personal and commercial use.
+                    <div class="alert alert-danger">
+                        Kepada pemakalah yang belum memiliki akun, silahkan untuk melakukan registrasi terlebih dahulu
                         <br />
-                         <strong> Some of its features are given below :</strong>
+                         <strong> Ketentuan yang berlaku :</strong>
                         <ul>
                             <li>
-                                Responsive Design Framework Used
+                                Point Ini disesuaikan dengan konten
                             </li>
                             <li>
-                                Easy to use and customize
+                                Point Ini disesuaikan dengan konten
                             </li>
                             <li>
-                                Font awesome icons included
+                                Point Ini disesuaikan dengan konten
                             </li>
                             <li>
-                                Clean and light code used.
+                                Point Ini disesuaikan dengan konten
                             </li>
                         </ul>
                        
                     </div>
-                    <div class="alert alert-success">
-                         <strong> Instructions To Use:</strong>
-                        <ul>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor sit ame
-                            </li>
-                            <li>
-                                 Aamet ipsum dolor sit ame
-                            </li>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor
-                            </li>
-                            <li>
-                                 Cpsum dolor sit ame
-                            </li>
-                        </ul>
-                       
-                    </div>
+
                 </div>
 
             </div>
