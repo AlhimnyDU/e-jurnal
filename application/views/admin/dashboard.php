@@ -88,21 +88,29 @@
         </div>
       </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="notice-board">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                   <div class="panel-heading">
-                    Jurnal sedang diulas
+                    Jurnal Proses
                   </div>
                   <div class="panel-body">
-                        <div class="table-responsive">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="#sedang" data-toggle="tab">Sedang Diulas</a></li>
+                      <li class><a href="#selesai" data-toggle="tab">Selesai Diulas</a></li>
+                    </ul>
+                    <hr>
+                    <div class="tab-content">
+                      <div class="tab-pane fade active in" id="sedang">
+                          <div class="table-responsive">
                             <table class="table table-striped datatable">
                             <thead>
                                 <tr>
                                     <th width="5%">No</th>
                                     <th>Judul</th>
                                     <th width="20%">Author</th>
-                                    <th width="20%">Reviewer</th>
+                                    <th width="20%">Reviewer 1</th>
+                                    <th width="20%">Reviewer 2</th>
                                     <th width="20%">Aksi</th>
                                 </tr>
                             </thead>
@@ -114,38 +122,40 @@
                                 <td><?php echo $row->nama_jurnal ?></td>
                                 <td><?php echo $row->nama ?></td>
                                 <td>
-                                  <?php $nama = $this->db->select('*')->from('tbl_akun')->where('id_akun', $row->id_reviewer)->get()->row();
-                                    echo $nama->nama;
-                                  ?>
+                                  <?php $nama = $this->db->select('*')->from('tbl_akun')->where('id_akun', $row->id_reviewer)->get()->row();?>
+                                  <?php echo $nama->nama; ?> <a href="#" class="btn btn-info btn-xs"><?php echo $row->status_reviewer1; ?></a>
                                 </td>
                                 <td>
-                                  <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
+                                  <?php $nama2 = $this->db->select('*')->from('tbl_akun')->where('id_akun', $row->id_reviewer2)->get()->row(); ?>
+                                  <?php echo $nama2->nama; ?> <a href="#" class="btn btn-info btn-xs"><?php echo $row->status_reviewer2; ?></a>
+                                     
+                                </td>
+                                <td>
+                                <?php if($row->tipe=="Keputusan Akhir"){?>
+                                  <a class="btn btn-sm btn-success" href="<?php echo site_url('admin/acc_jurnal/'.$row->id_jurnal)?>"><i class="fa fa-check"></i></a> | 
+                                  <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/dec_jurnal/'.$row->id_jurnal)?>"><i class="fa fa-times"></i></a> | 
+                                <?php } ?>
+                                  <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | 
+                                  <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
                                 </td>
                               </tr>
                             <?php $no++; } ?>
                             </tbody>
                             </table>
                           </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="notice-board">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    Jurnal telah diulas (Selesai)
-                  </div>
-                  <div class="panel-body">
-                        <div class="table-responsive">
+                      </div>
+                      <div class="tab-pane fade" id="selesai">
+                      <div class="table-responsive">
                             <table class="table table-striped datatable">
                             <thead>
                                 <tr>
                                     <th width="5%">No</th>
                                     <th>Judul</th>
-                                    <th width="20%">Author</th>
-                                    <th width="15%">Status</th>
-                                    <th width="30%">Aksi</th>
+                                    <th>Author</th>
+                                    <th>Reviewer 1</th>
+                                    <th>Reviewer 2</th>
+                                    <th>status</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -155,19 +165,33 @@
                                 <td align="center"><?php echo $no ?></td>
                                 <td><?php echo $row->nama_jurnal ?></td>
                                 <td><?php echo $row->nama ?></td>
-                                <td><?php if($row->tipe=="Selesai"){?>Disetujui<?php }else if($row->tipe=="Ditolak"){?>Ditolak<?php }else if($row->tipe=="Publish"){ ?>Publish<?php } ?></td>
                                 <td>
-                                <!-- <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a> |  -->
-                                <?php if($row->tipe!="Publish"){ ?>
-                                  | <a class="btn btn-sm btn-danger" title="Publish" href="<?php echo site_url('admin/publish/'.$row->id_jurnal)?>"><i class="fa fa-eye"></i></a>
-                                <?php } ?>
-                                  | <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a> |
+                                  <?php $nama = $this->db->select('*')->from('tbl_akun')->where('id_akun', $row->id_reviewer)->get()->row();
+                                    echo $nama->nama;
+                                  ?>
+                                </td>
+                                <td>
+                                  <?php $nama2 = $this->db->select('*')->from('tbl_akun')->where('id_akun', $row->id_reviewer2)->get()->row();
+                                    echo $nama2->nama;
+                                  ?>
+                                </td>
+                                <td>
+                                  <?php if($row->tipe=="Selesai"){ ?>
+                                    Diterima
+                                  <?php }else if($row->tipe=="Ditolak"){ ?>
+                                    Ditolak
+                                  <?php } ?>
+                                </td>
+                                <td>
+                                  <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
                                 </td>
                               </tr>
                             <?php $no++; } ?>
                             </tbody>
                             </table>
                           </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -182,7 +206,7 @@
                       <a class="btn btn-success" href="" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus-circle"></i> Tambah Akun</a>
                     </div>
                     <div class="panel-body">
-                        <div class="table-responsive">
+                    <div class="table-responsive">
                             <table class="table table-striped datatable">
                             <thead>
                                 <tr>
@@ -208,7 +232,7 @@
                             <?php $no++; } ?>
                             </tbody>
                             </table>
-                        </div>  
+                        </div> 
                     </div>
                     </div>
                 </div>
@@ -220,7 +244,7 @@
                 <div class="notice-board">
                     <div class="panel panel-danger">
                     <div class="panel-heading">
-                    <a class="btn btn-danger" href="<?php echo site_url('admin/register_reviewer') ?>"><i class="fa fa-plus-circle"></i> Tambah Reviewer</a>
+                      <a class="btn btn-danger" href="<?php echo site_url('admin/register_reviewer') ?>"><i class="fa fa-plus-circle"></i> Tambah Reviewer</a>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -332,14 +356,33 @@
                     <div class="row">
                         <div class="col col-lg-12">
                             <div class="form-group">
-                                <select name="reviewer" class="form-control" required="">
+                              <label>Reviewer 1</label>
+                                <select name="reviewer1" class="form-control" required="">
                                     <option value="" disabled selected hidden>Pilih...</option>
                                     <?php 
-                                      foreach($reviewer as $r){ 
-                                        if($row->bidang==$r->bidang){
+                                      foreach($reviewer as $r){
+                                        if($row->bidang!="lainnya"){
+                                          if($row->bidang==$r->bidang){
                                     ?>
                                     <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
-                                    <?php }} ?>
+                                          <?php }else{ ?>
+                                    <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
+                                    <?php }}} ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                              <label>Reviewer 2</label>
+                                <select name="reviewer2" class="form-control" required="">
+                                    <option value="" disabled selected hidden>Pilih...</option>
+                                    <?php 
+                                      foreach($reviewer as $r){
+                                        if($row->bidang!="lainnya"){
+                                          if($row->bidang==$r->bidang){
+                                    ?>
+                                    <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
+                                          <?php }else{ ?>
+                                    <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
+                                    <?php }}} ?>
                                 </select>
                             </div>
                             <div class="modal-footer">

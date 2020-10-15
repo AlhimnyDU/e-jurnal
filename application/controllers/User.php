@@ -93,6 +93,8 @@ class User extends CI_Controller {
 	public function revisi($id){
 			$data = array(
 				'tipe' => "Pengajuan akhir",
+				'status_reviewer1' => "Pending",
+				'status_reviewer2' => "Pending",
 				'file_jurnal' => $this->upload_revisi(),
 				'note' => $this->input->post('note'),
 				'updated' =>  date('Y-m-d H:i:s')

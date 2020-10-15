@@ -208,7 +208,7 @@
                                 <a href="#">
                                 <?php if($row->tipe=="Dikembalikan"){?>
                                   <span class="bs-stepper-circle" style="background-color:red;"><i class="fa fa-times"></i></span>
-                                <?php }else if(($row->tipe=="Sedang diulas")||($row->tipe=="Revisi")||($row->tipe=="Ditolak")||($row->tipe=="Selesai")||($row->tipe=="Pengajuan akhir")){?>
+                                <?php }else if(($row->tipe=="Sedang diulas")||($row->tipe=="Revisi")||($row->tipe=="Ditolak")||($row->tipe=="Selesai")||($row->tipe=="Menunggu reviewer")||($row->tipe=="Keputusan Akhir")||($row->tipe=="Pengajuan akhir")){?>
                                   <span class="bs-stepper-circle" style="background-color:green;"><i class="fa fa-check"></i></span>
                                 <?php }else{ ?>
                                   <span class="bs-stepper-circle">2</span>
@@ -221,7 +221,7 @@
                                 <a href="#">
                                 <?php if($row->tipe=="Revisi"){?>
                                   <span class="bs-stepper-circle" style="background-color:orange;"><i class="fa fa-pause"></i></span>
-                                <?php }else if(($row->tipe=="Ditolak")||($row->tipe=="Selesai")){?>
+                                <?php }else if(($row->tipe=="Ditolak")||($row->tipe=="Selesai"||($row->tipe=="Keputusan Akhir"))){?>
                                   <span class="bs-stepper-circle" style="background-color:green;"><i class="fa fa-check"></i></span>
                                   <?php }else{ ?>
                                   <span class="bs-stepper-circle">3</span>

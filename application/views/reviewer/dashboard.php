@@ -27,6 +27,7 @@
                         <tbody>
                         <?php $no=1;
                         foreach($jurnal as $row){ ?>
+                        <?php if(($row->tipe=="Sedang diulas")||($row->tipe=="Pengajuan akhir")){ ?>
                           <tr>
                             <td align="center"><?php echo  $no ?></td>
                             <td><?php echo $row->nama_jurnal ?></td>
@@ -36,7 +37,7 @@
                               <a class="btn btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a> | <a class="btn btn-primary" href="" data-toggle="modal" data-target="#jawabanModal<?php echo $row->id_jurnal?>"><i class="fa fa-edit"></i></a>
                             </td>
                           </tr>
-                        <?php $no++; } ?>
+                        <?php $no++; }} ?>
                         </tbody>
                         </table>
                     </div>
@@ -107,15 +108,15 @@
                   <select name="tipe" class="form-control" required="">
                     <option value="" disabled selected hidden>Pilih...</option>
                     <option value="Revisi">Perlu Revisi</option>
-                    <option value="Selesai">Disetujui</option>
-                    <option value="Ditolak">Ditolak</option>
+                    <option value="Terima">Disetujui</option>
+                    <option value="Tolak">Ditolak</option>
                   </select>
                 <?php }else{ ?>
                     <label>Persetujuan</label>
                     <select name="tipe" class="form-control" required="">
                       <option value="" disabled selected hidden>Pilih...</option>
-                      <option value="Selesai">Disetujui</option>
-                      <option value="Ditolak">Ditolak</option>
+                      <option value="Terima">Disetujui</option>
+                      <option value="Tolak">Ditolak</option>
                     </select>
                 <?php } ?>
                 </div>
