@@ -63,7 +63,8 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top-active" href="<?php echo site_url('user') ?>">Dashboard</a></li>
+                            <li><a class="menu-top" href="#dashboard"  data-toggle="tab">Jurnal</a></li>
+                            <li><a class="menu-top" href="#editprofile"  data-toggle="tab">Edit Profil</a></li>
                             <li><a class="menu-top" href="<?php echo site_url('login/logout') ?>">Log Out</a></li>
                         </ul>
                     </div>
