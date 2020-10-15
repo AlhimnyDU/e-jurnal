@@ -35,14 +35,6 @@ class User extends CI_Controller {
 		$this->load->view('user/templates/footer');
 	}
 	
-	public function upload_jurnal(){
-        $config['upload_path']          = './assets/upload/jurnal/';
-        $config['allowed_types']        = 'pdf';
-        $this->upload->initialize($config);
-		$this->upload->do_upload('file_jurnal');
-		return $this->upload->data('file_name');
-	}
-
 	public function upload_revisi(){
         $config['upload_path']          = './assets/upload/jurnal/';
         $config['allowed_types']        = 'pdf';
@@ -71,10 +63,17 @@ class User extends CI_Controller {
 	}
 
 	public function addJurnal(){
+		$nama_akun = $this->db->select('nama')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
+		$filename = $this->input->post('bidang').'_'.$this->input->post('nama_jurnal').'_'.$nama_akun['nama'];
+		$config['upload_path']          = './assets/upload/jurnal/';
+		$config['allowed_types']        = 'pdf';
+		$config['file_name']			= $filename;
+        $this->upload->initialize($config);
+		$this->upload->do_upload('file_jurnal');
 		$data = array(
 			'nama_jurnal' => $this->input->post('nama_jurnal'),
 			'bidang'  => $this->input->post('bidang'),
-			'file_jurnal' => $this->upload_jurnal(),
+			'file_jurnal' => $this->upload->data('file_name'),
 			'id_akun' => $this->session->userdata('id_akun'),
 			'note'	=> $this->input->post('note'),
 			'tipe'	=> "Awal",
