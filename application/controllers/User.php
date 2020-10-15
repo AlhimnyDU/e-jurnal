@@ -90,11 +90,18 @@ class User extends CI_Controller {
 	}
 
 	public function revisi($id){
+			$nama_akun = $this->db->select('nama')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
+			$filename = $this->input->post('bidang').'_'.$this->input->post('nama_jurnal').'_'.$nama_akun['nama'].'_Revisi';
+			$config['upload_path']          = './assets/upload/jurnal/';
+			$config['allowed_types']        = 'pdf';
+			$config['file_name']			= $filename;
+			$this->upload->initialize($config);
+			$this->upload->do_upload('file_revisi');
 			$data = array(
 				'tipe' => "Pengajuan akhir",
 				'status_reviewer1' => "Pending",
 				'status_reviewer2' => "Pending",
-				'file_jurnal' => $this->upload_revisi(),
+				'file_jurnal' => $this->upload->data('file_name'),
 				'note' => $this->input->post('note'),
 				'updated' =>  date('Y-m-d H:i:s')
 			);

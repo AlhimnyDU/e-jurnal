@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 class Reviewer extends CI_Controller {
 
@@ -39,90 +39,143 @@ class Reviewer extends CI_Controller {
     public function jawaban($id){
 		$reviewer = $this->db->where('id_jurnal',$id)->get('tbl_jurnal')->row_array();
 		if($reviewer['id_reviewer']==$this->session->userdata('id_akun')){
-			if($this->input->post('tipe')=="Revisi"){
-				if($reviewer['status_reviewer2']=="Revisi"){
-					$data = array(
-						'status_reviewer1' => $this->input->post('tipe'),
-						'tipe' => "Revisi",
-						'jawaban' => $this->input->post('jawaban'),
-						'file_jawaban' => $this->upload_jawaban(),
-						'updated' =>  date('Y-m-d H:i:s')
-					);
-				}else{
-					$data = array(
-						'status_reviewer1' => $this->input->post('tipe'),
-						'tipe' => "Menunggu Reviewer",
-						'jawaban' => $this->input->post('jawaban'),
-						'file_jawaban' => $this->upload_jawaban(),
-						'updated' =>  date('Y-m-d H:i:s')
-					);
-				}
-			}else{
-				if(($reviewer['status_reviewer2']!="Pending"){
-					$data = array(
-						'status_reviewer1' => $this->input->post('tipe'),
-						'tipe' => "Keputusan Akhir",
-						'jawaban' => $this->input->post('jawaban'),
-						'file_jawaban' => $this->upload_jawaban(),
-						'updated' =>  date('Y-m-d H:i:s')
-					);
-				}else{
-					$data = array(
-						'status_reviewer1' => $this->input->post('tipe'),
-						'tipe' => "Keputusan Akhir",
-						'jawaban' => $this->input->post('jawaban'),
-						'file_jawaban' => $this->upload_jawaban(),
-						'updated' =>  date('Y-m-d H:i:s')
-					);
-				}
+			if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Tolak"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Revisi"))){
+				$data = array(
+					'status_reviewer1' => $this->input->post('statusreviewer'),
+					'tipe' => "Revisi",
+					'jawaban' => $this->input->post('jawaban'),
+					'file_jawaban' => $this->upload_jawaban(),
+					'updated' =>  date('Y-m-d H:i:s')
+				);
+			}else if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Pending"))){
+				$data = array(
+					'status_reviewer1' => $this->input->post('statusreviewer'),
+					'tipe' => "Menunggu Reviewer",
+					'jawaban' => $this->input->post('jawaban'),
+					'file_jawaban' => $this->upload_jawaban(),
+					'updated' =>  date('Y-m-d H:i:s')
+				);
+			}else if((($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Tolak")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Terima"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Tolak"))){
+				$data = array(
+					'status_reviewer1' => $this->input->post('statusreviewer'),
+					'tipe' => "Keputusan Akhir",
+					'jawaban' => $this->input->post('jawaban'),
+					'file_jawaban' => $this->upload_jawaban(),
+					'updated' =>  date('Y-m-d H:i:s')
+				);
 			}
-		}else if($reviewer['id_reviewer2']==$this->session->userdata('id_akun')){
-			if($this->input->post('tipe')=="Revisi"){
-				if($reviewer['status_reviewer1']=="Revisi"){
-					$data = array(
-						'status_reviewer2' => $this->input->post('tipe'),
-						'tipe' => "Revisi",
-						'jawaban' => $this->input->post('jawaban'),
-						'file_jawaban' => $this->upload_jawaban(),
-						'updated' =>  date('Y-m-d H:i:s')
-					);
-				}else{
-					$data = array(
-						'status_reviewer2' => $this->input->post('tipe'),
-						'tipe' => "Menunggu Reviewer",
-						'jawaban' => $this->input->post('jawaban'),
-						'file_jawaban' => $this->upload_jawaban(),
-						'updated' =>  date('Y-m-d H:i:s')
-					);
-				}
-			}else{
-				if(($reviewer['status_reviewer1']!="Pending"){
-					$data = array(
-						'status_reviewer2' => $this->input->post('tipe'),
-						'tipe' => "Keputusan Akhir",
-						'jawaban' => $this->input->post('jawaban'),
-						'file_jawaban' => $this->upload_jawaban(),
-						'updated' =>  date('Y-m-d H:i:s')
-					);
-				}else{
-					$data = array(
-						'status_reviewer2' => $this->input->post('tipe'),
-						'jawaban' => $this->input->post('jawaban'),
-						'file_jawaban' => $this->upload_jawaban(),
-						'updated' =>  date('Y-m-d H:i:s')
-					);
-				}
+		} else if($reviewer['id_reviewer2']==$this->session->userdata('id_akun')){
+			if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Tolak"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Revisi"))){
+				$data = array(
+					'status_reviewer2' => $this->input->post('statusreviewer'),
+					'tipe' => "Revisi",
+					'jawaban' => $this->input->post('jawaban'),
+					'file_jawaban' => $this->upload_jawaban(),
+					'updated' =>  date('Y-m-d H:i:s')
+				);
+			}
+			else if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Pending"))){
+				$data = array(
+					'status_reviewer2' => $this->input->post('statusreviewer'),
+					'tipe' => "Menunggu Reviewer",
+					'jawaban' => $this->input->post('jawaban'),
+					'file_jawaban' => $this->upload_jawaban(),
+					'updated' =>  date('Y-m-d H:i:s')
+				);
+			}else if((($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Tolak")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Terima"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Tolak"))){
+				$data = array(
+					'status_reviewer2' => $this->input->post('statusreviewer'),
+					'tipe' => "Keputusan Akhir",
+					'jawaban' => $this->input->post('jawaban'),
+					'file_jawaban' => $this->upload_jawaban(),
+					'updated' =>  date('Y-m-d H:i:s')
+				);
 			}
 		}
-       
-        $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
-        if($query){
-        	$this->session->set_flashdata('sukses_update',"Update Berhasil");
-        }else{
-        	$this->session->set_flashdata('error_update',"Update Gagal");
+		$query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
+		if($query){
+			$this->session->set_flashdata('sukses_update',"Update Berhasil");
+		}else{
+			$this->session->set_flashdata('error_update',"Update Gagal");
 		}
-        redirect('reviewer');
-    }
+		redirect('reviewer');
+	}
+		// 	if($this->input->post('tipe')=="Revisi"){
+		// 		if($reviewer['status_reviewer2']=="Revisi"){
+		// 			$data = array(
+		// 				'status_reviewer1' => $this->input->post('tipe'),
+		// 				'tipe' => "Revisi",
+		// 				'jawaban' => $this->input->post('jawaban'),
+		// 				'file_jawaban' => $this->upload_jawaban(),
+		// 				'updated' =>  date('Y-m-d H:i:s')
+		// 			);
+		// 		}else{
+		// 			$data = array(
+		// 				'status_reviewer1' => $this->input->post('tipe'),
+		// 				'tipe' => "Menunggu Reviewer",
+		// 				'jawaban' => $this->input->post('jawaban'),
+		// 				'file_jawaban' => $this->upload_jawaban(),
+		// 				'updated' =>  date('Y-m-d H:i:s')
+		// 			);
+		// 		}
+		// 	}else{
+		// 		if($reviewer['status_reviewer2']!="Pending"){
+		// 			$data = array(
+		// 				'status_reviewer1' => $this->input->post('tipe'),
+		// 				'tipe' => "Keputusan Akhir",
+		// 				'jawaban' => $this->input->post('jawaban'),
+		// 				'file_jawaban' => $this->upload_jawaban(),
+		// 				'updated' =>  date('Y-m-d H:i:s')
+		// 			);
+		// 		}
+		// 		else{
+		// 			$data = array(
+		// 				'status_reviewer1' => $this->input->post('tipe'),
+		// 				'tipe' => "Keputusan Akhir",
+		// 				'jawaban' => $this->input->post('jawaban'),
+		// 				'file_jawaban' => $this->upload_jawaban(),
+		// 				'updated' =>  date('Y-m-d H:i:s')
+		// 			);
+		// 		}
+		// 	}
+		// }else if($reviewer['id_reviewer2']==$this->session->userdata('id_akun')){
+		// 	if($this->input->post('tipe')=="Revisi"){
+		// 		if($reviewer['status_reviewer1']=="Revisi"){
+		// 			$data = array(
+		// 				'status_reviewer2' => $this->input->post('tipe'),
+		// 				'tipe' => "Revisi",
+		// 				'jawaban' => $this->input->post('jawaban'),
+		// 				'file_jawaban' => $this->upload_jawaban(),
+		// 				'updated' =>  date('Y-m-d H:i:s')
+		// 			);
+		// 		}else{
+		// 			$data = array(
+		// 				'status_reviewer2' => $this->input->post('tipe'),
+		// 				'tipe' => "Menunggu Reviewer",
+		// 				'jawaban' => $this->input->post('jawaban'),
+		// 				'file_jawaban' => $this->upload_jawaban(),
+		// 				'updated' =>  date('Y-m-d H:i:s')
+		// 			);
+		// 		}
+		// 	}else{
+		// 		if($reviewer['status_reviewer1']!="Pending"){
+		// 			$data = array(
+		// 				'status_reviewer2' => $this->input->post('tipe'),
+		// 				'tipe' => "Keputusan Akhir",
+		// 				'jawaban' => $this->input->post('jawaban'),
+		// 				'file_jawaban' => $this->upload_jawaban(),
+		// 				'updated' =>  date('Y-m-d H:i:s')
+		// 			);
+		// 		}else{
+		// 			$data = array(
+		// 				'status_reviewer2' => $this->input->post('tipe'),
+		// 				'jawaban' => $this->input->post('jawaban'),
+		// 				'file_jawaban' => $this->upload_jawaban(),
+		// 				'updated' =>  date('Y-m-d H:i:s')
+		// 			);
+		// 		}
+		// 	}
+		//}
 
     public function upload_jawaban(){
         $config['upload_path']          = './assets/upload/jurnal/';

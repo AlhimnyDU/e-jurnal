@@ -27,7 +27,7 @@
                         <tbody>
                         <?php $no=1;
                         foreach($jurnal as $row){ ?>
-                        <?php if(($row->tipe=="Sedang diulas")||($row->tipe=="Pengajuan akhir")){ ?>
+                        <?php if(($row->tipe=="Sedang diulas")||($row->tipe=="Pengajuan akhir")||($row->tipe=="Menunggu reviewer")){ ?>
                           <tr>
                             <td align="center"><?php echo  $no ?></td>
                             <td><?php echo $row->nama_jurnal ?></td>
@@ -105,18 +105,20 @@
                 <div class="form-group">
                 <?php if($row->tipe!="Pengajuan akhir"){?>
                   <label>Persetujuan</label>
-                  <select name="tipe" class="form-control" required="">
+                  <select name="statusreviewer" class="form-control" required="">
                     <option value="" disabled selected hidden>Pilih...</option>
                     <option value="Revisi">Perlu Revisi</option>
                     <option value="Terima">Disetujui</option>
                     <option value="Tolak">Ditolak</option>
+                    <!-- <option value="Tolak">Ditolak</option> -->
                   </select>
                 <?php }else{ ?>
                     <label>Persetujuan</label>
-                    <select name="tipe" class="form-control" required="">
+                    <select name="statusreviewer" class="form-control" required="">
                       <option value="" disabled selected hidden>Pilih...</option>
                       <option value="Terima">Disetujui</option>
                       <option value="Tolak">Ditolak</option>
+                      <!-- <option value="Tolak">Ditolak</option> -->
                     </select>
                 <?php } ?>
                 </div>

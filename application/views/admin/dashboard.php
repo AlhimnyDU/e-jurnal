@@ -361,7 +361,7 @@
                                     <option value="" disabled selected hidden>Pilih...</option>
                                     <?php 
                                       foreach($reviewer as $r){
-                                        if($row->bidang!="lainnya"){
+                                        if($row->bidang!="Lainnya"){
                                           if($row->bidang==$r->bidang){
                                     ?>
                                     <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
@@ -376,7 +376,7 @@
                                     <option value="" disabled selected hidden>Pilih...</option>
                                     <?php 
                                       foreach($reviewer as $r){
-                                        if($row->bidang!="lainnya"){
+                                        if($row->bidang!="Lainnya"){
                                           if($row->bidang==$r->bidang){
                                     ?>
                                     <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
