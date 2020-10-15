@@ -34,6 +34,37 @@ class User extends CI_Controller {
 		$this->load->view('user/dasboard');
 		$this->load->view('user/templates/footer');
 	}
+
+	public function editProfile($id){
+		$email = $this->input->post('email');
+		$data = array(
+            'nama' => $this->input->post('nama'),
+            'email' => $this->input->post('email'),
+            'asal_institusi' => $this->input->post('asal_institusi'),
+			'telp' => $this->input->post('telp'),
+            'tgl_lahir' => $this->input->post('tgl_lahir'),
+            'alamat' => $this->input->post('alamat'),
+            'updated' =>  date('Y-m-d H:i:s')
+		);
+        $query =  $this->Login_model->update('tbl_akun','id_akun',$id,$data);
+        if($query){
+			$this->session->set_flashdata('sukses_registrasi',"Tambah Berhasil");
+        }else{
+        	$this->session->set_flashdata('gagal_registrasi',"Tambah Gagal");
+        }
+        redirect('user');
+	}
+
+	public function gantipassUser($id){
+		$data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+		$query =  $this->Login_model->update('tbl_akun','id_akun',$id,$data);
+        if($query){
+        	$this->session->set_flashdata('sukses_update',"Update Berhasil");
+        }else{
+        	$this->session->set_flashdata('error_update',"Update Gagal");
+		}
+		redirect('user');
+	}
 	
 	public function upload_revisi(){
         $config['upload_path']          = './assets/upload/jurnal/';

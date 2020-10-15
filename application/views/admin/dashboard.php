@@ -123,7 +123,7 @@
                                 <td><?php echo $row->nama ?></td>
                                 <td>
                                   <?php $nama = $this->db->select('*')->from('tbl_akun')->where('id_akun', $row->id_reviewer)->get()->row();?>
-                                  <?php echo $nama->nama; ?> <a href="#" class="btn btn-info btn-xs"><?php echo $row->status_reviewer1; ?></a>
+                                  <?php echo $nama->nama; ?> <a href="#" class="btn btn-info btn-xs"><?php echo $row->status_reviewer1  ; ?></a>
                                 </td>
                                 <td>
                                   <?php $nama2 = $this->db->select('*')->from('tbl_akun')->where('id_akun', $row->id_reviewer2)->get()->row(); ?>

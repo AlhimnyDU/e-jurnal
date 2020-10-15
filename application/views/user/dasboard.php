@@ -42,33 +42,74 @@
         </div>
         <div class="col-md-6">
           <div class="Compose-Message">
-            <div class="panel panel-success">
+            <div class="panel panel-primary">
               <div class="panel-heading">
-                Input New Submission
+                
               </div>
-              <form method="POST" action="<?php echo site_url('user/addJurnal')?>" enctype="multipart/form-data">
               <div class="panel-body">
-                <label>Journal Name :</label> <input type="text" name="nama_jurnal" class="form-control" required>
-                <label>Bidang :</label>
-                <select name="bidang" class="form-control" required="">
-                  <option value="" disabled selected hidden>Pilih...</option>
-                  <option value="TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK">TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK</option>
-                  <option value="TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT">TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT</option>
-                  <option value="TEKNOLOGI KONVERSI ENERGI">TEKNOLOGI KONVERSI ENERGI</option>
-                  <option value="TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL">TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL</option>
-                  <option value="TEKNOLOGI MANUFAKTUR DAN METROLOGI">TEKNOLOGI MANUFAKTUR DAN METROLOGI</option>
-                  <option value="Lainnya">Lainnya</option>
-                </select> 
-                <label>Upload Journal File :</label> <input type="file" class="dropify" data-height="75" name="file_jurnal" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
-                <!-- <label>Upload Payment Bill :</label> <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf"> -->
-                <label>Note :</label> <textarea rows="3" class="form-control" name="note"></textarea>
-                <input type="checkbox" required> Saya menyetujui segala ketentuan yang berlaku
-                <hr>
-                <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-envelope"></span> Submit</button>
-              </div>
-              </form>
-              <div class="panel-footer text-muted">
-                <strong>Note :</strong> Please note that your journal file is correct
+                <div class="tab-content">
+                  <div class="tab-pane fade active in" id="dashboard">
+                  <center><label>Input New Submission</label></center>
+                  <hr>
+                    <form method="POST" action="<?php echo site_url('user/addJurnal')?>" enctype="multipart/form-data">
+                      <label>Journal Name :</label> <input type="text" name="nama_jurnal" class="form-control" required>
+                      <label>Bidang :</label>
+                      <select name="bidang" class="form-control" required="">
+                        <option value="" disabled selected hidden>Pilih...</option>
+                        <option value="TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK">TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK</option>
+                        <option value="TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT">TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT</option>
+                        <option value="TEKNOLOGI KONVERSI ENERGI">TEKNOLOGI KONVERSI ENERGI</option>
+                        <option value="TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL">TEKNOLOGI SISTEM KENDALI DAN PEMROSESAN SINYAL</option>
+                        <option value="TEKNOLOGI MANUFAKTUR DAN METROLOGI">TEKNOLOGI MANUFAKTUR DAN METROLOGI</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select> 
+                      <label>Upload Journal File :</label> <input type="file" class="dropify" data-height="75" name="file_jurnal" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
+                      <!-- <label>Upload Payment Bill :</label> <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf"> -->
+                      <label>Note :</label> <textarea rows="3" class="form-control" name="note"></textarea>
+                      <input type="checkbox" required> Saya menyetujui segala ketentuan yang berlaku
+                      <hr>
+                      <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-envelope"></span> Submit</button>
+                    </form>
+                    <br>
+                    <div class="panel-footer text-muted">
+                      <strong>Note :</strong> Please note that your journal file is correct
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="editprofile">
+                    <center><label>Edit Profile</label></center>
+                    <hr>
+                    <form method="post" action="<?php echo site_url('user/editProfile/'.$akun['id_akun'])?>" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nama Lengkap</label>
+                                <input type="text" class="form-control" name="nama" value="<?php echo $akun['nama']?>" placeholder="Isikan Nama Lengkap" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tanggal Lahir</label>
+                                <input type="date" class="form-control" name="tgl_lahir" value="<?php echo $akun['tgl_lahir']?>" placeholder="Isikan Tanggal Lahir" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" name="email" value="<?php echo $akun['email']?>" placeholder="Isikan Email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Asal Institusi/Perguruan Tinggi</label>
+                                <input type="text" class="form-control" name="asal_institusi" value="<?php echo $akun['asal_institusi']?>" placeholder="Isikan Nama Institusi"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Telepon</label>
+                                <input type="text" class="form-control" name="telp" value="<?php echo $akun['telp']?>" placeholder="Isikan Nomor Telepon"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Alamat</label>
+                                <textarea class="form-control" name="alamat" placeholder="Isikan Alamat" ><?php echo $akun['alamat']?></textarea>
+                            </div>
+                            <center>
+                            <button type="submit" class="btn btn-primary">Submit</button> | 
+                            <a class="btn btn-warning" href="" data-toggle="modal" data-target="#lupaModal"><i class="fa fa-key"></i> Ganti Password</a>
+                            </center>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -268,3 +309,30 @@
   <?php
     } 
   ?>
+
+<div id="lupaModal" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">Ganti Password</h3>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="<?php echo site_url('user/gantipassUser/').$akun['id_akun']?>" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col col-lg-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Masukkan Password baru" />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary pull-right">Update</button>
+                                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>  
+        </div>
+    </div>
+  </div>
