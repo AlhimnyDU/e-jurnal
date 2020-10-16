@@ -36,7 +36,7 @@ class Admin extends CI_Controller {
 		$data['jml_jurnal_fin'] = $this->db->select('COUNT(*) as total')->where('tipe', "Selesai")->get('tbl_jurnal')->row_array();
 		$data['akun'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "user")->get()->result();
 		$data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Awal")->get()->result();
-		$data['jurnal_ulas'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Sedang diulas")->or_where('tipe', "Keputusan Akhir")->get()->result();
+		$data['jurnal_ulas'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Sedang diulas")->or_where('tipe', "Keputusan Akhir")->or_where('tipe', "Revisi")->or_where('tipe', "Pengajuan Akhir")->get()->result();
 		$data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Selesai")->or_where('tipe', "Ditolak")->or_where('tipe','Publish')->get()->result();
         $data['reviewer'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "reviewer")->get()->result();
 		$this->load->view('admin/templates/header');

@@ -30,7 +30,7 @@ class Reviewer extends CI_Controller {
 	public function index(){
         $data['reviewer'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "reviewer")->get()->result();
         $data['jurnal'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('id_reviewer', $this->session->userdata('id_akun'))->or_where('id_reviewer2', $this->session->userdata('id_akun'))->get()->result();
-        $data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('id_reviewer', $this->session->userdata('id_akun'))->where('tipe', "Selesai")->get()->result();
+        $data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('id_reviewer', $this->session->userdata('id_akun'))->where('tipe', "Selesai")->or_where('tipe', "Keputusan Akhir")->get()->result();
 		$this->load->view('reviewer/templates/header');
 		$this->load->view('reviewer/dashboard',$data);
 		$this->load->view('reviewer/templates/footer');
@@ -65,7 +65,7 @@ class Reviewer extends CI_Controller {
 				);
 			}
 		} else if($reviewer['id_reviewer2']==$this->session->userdata('id_akun')){
-			if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Tolak"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Revisi"))){
+			if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Tolak"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Revisi"))){
 				$data = array(
 					'status_reviewer2' => $this->input->post('statusreviewer'),
 					'tipe' => "Revisi",
