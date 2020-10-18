@@ -26,9 +26,34 @@ class Home extends CI_Controller {
 	}
 
 	public function index(){
-        $data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','left')->where('tbl_jurnal.tipe','publish')->get()->result();
+        $data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','left')->where('tbl_jurnal.publish','y')->get()->result();
         $this->load->view('home/templates/header');
         $this->load->view('home/home',$data);
+        $this->load->view('home/templates/footer');
+	}
+	
+	public function tentangkami(){
+        $this->load->view('home/templates/header');
+        $this->load->view('home/tentang_kami');
+        $this->load->view('home/templates/footer');
+	}
+	
+	public function terkini(){
+        $this->load->view('home/templates/header');
+        $this->load->view('home/terkini');
+        $this->load->view('home/templates/footer');
+	}
+	
+	public function informasi(){
+        $this->load->view('home/templates/header');
+        $this->load->view('home/informasi');
+        $this->load->view('home/templates/footer');
+	}
+	
+	public function arsip(){
+        $data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','left')->where('tbl_jurnal.publish','y')->get()->result();
+        $this->load->view('home/templates/header');
+        $this->load->view('home/arsip',$data);
         $this->load->view('home/templates/footer');
     }
 }

@@ -1704,7 +1704,7 @@ header li ul.sub_menu li a:hover {
 }
 
 header.sticky_header {
-  background-color: #18181c;
+  background-color: #241b45;
   margin: 0;
   padding: 5px;
   -webkit-box-shadow: 0 0 42px rgba(0, 0, 0, 0.08);
@@ -1821,7 +1821,7 @@ footer .newsletter_form .form-control {
 }
 
 .copyright_footer {
-  background-color: #080113;
+  background-color: #241b45;
   padding: 15px;
 }
 .copyright_footer p {

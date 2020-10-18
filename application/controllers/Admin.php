@@ -28,20 +28,31 @@ class Admin extends CI_Controller {
 	}
 
 	public function index(){
-		$data['jml'] = $this->db->select('COUNT(*) as totalAkun')->get('tbl_akun')->row_array();
-		$data['jml_user'] = $this->db->select('COUNT(*) as total')->where('role_akun', "user")->get('tbl_akun')->row_array();
-		$data['percent'] = $data['jml_user']['total']/$data['jml']['totalAkun']*100;
-		$data['jml_jurnal'] = $this->db->select('COUNT(*) as total')->get('tbl_jurnal')->row_array();
-		$data['jml_jurnal_rev'] = $this->db->select('COUNT(*) as total')->where('tipe', "Ditolak")->get('tbl_jurnal')->row_array();
-		$data['jml_jurnal_fin'] = $this->db->select('COUNT(*) as total')->where('tipe', "Selesai")->get('tbl_jurnal')->row_array();
-		$data['akun'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "user")->get()->result();
-		$data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Awal")->get()->result();
-		$data['jurnal_ulas'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Sedang diulas")->or_where('tipe', "Keputusan Akhir")->or_where('tipe', "Revisi")->or_where('tipe', "Pengajuan Akhir")->get()->result();
-		$data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Selesai")->or_where('tipe', "Ditolak")->or_where('tipe','Publish')->get()->result();
-        $data['reviewer'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "reviewer")->get()->result();
-		$this->load->view('admin/templates/header');
-		$this->load->view('admin/dashboard',$data);
-		$this->load->view('admin/templates/footer');
+		if($this->session->userdata('username')){
+			if($this->session->userdata('admin')){
+				$data['jml'] = $this->db->select('COUNT(*) as totalAkun')->get('tbl_akun')->row_array();
+				$data['jml_user'] = $this->db->select('COUNT(*) as total')->where('role_akun', "user")->get('tbl_akun')->row_array();
+				$data['percent'] = $data['jml_user']['total']/$data['jml']['totalAkun']*100;
+				$data['jml_jurnal'] = $this->db->select('COUNT(*) as total')->get('tbl_jurnal')->row_array();
+				$data['jml_jurnal_rev'] = $this->db->select('COUNT(*) as total')->where('tipe', "Ditolak")->get('tbl_jurnal')->row_array();
+				$data['jml_jurnal_fin'] = $this->db->select('COUNT(*) as total')->where('tipe', "Selesai")->get('tbl_jurnal')->row_array();
+				$data['akun'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "user")->get()->result();
+				$data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Awal")->get()->result();
+				$data['jurnal_ulas'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Sedang diulas")->or_where('tipe', "Keputusan Akhir")->or_where('tipe', "Revisi")->or_where('tipe', "Pengajuan Akhir")->get()->result();
+				$data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('tipe', "Selesai")->or_where('tipe', "Ditolak")->get()->result();
+				$data['reviewer'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "reviewer")->get()->result();
+				$data['file'] = $this->db->select('*')->from('tbl_file')->get()->result();
+				$data['timeline'] = $this->db->select('*')->from('tbl_timeline')->get()->result();
+				$this->load->view('admin/templates/header');
+				$this->load->view('admin/dashboard',$data);
+				$this->load->view('admin/templates/footer');
+			}else{
+				echo "404 - NOT FOUND";
+			}
+
+		}else{
+			redirect('login');
+		}
 	}
 
 	public function job($id){
@@ -131,9 +142,36 @@ class Admin extends CI_Controller {
         redirect('admin');
 	}
 
+	public function schedule($id){
+		$data = array(
+			'batas_waktu' => $this->input->post('batas_waktu')
+		);
+        $query =  $this->Login_model->update('tbl_timeline','id_timeline',$id,$data);
+        if($query){
+			$this->session->set_flashdata('sukses_update',"update Berhasil");
+        }else{
+        	$this->session->set_flashdata('gagal_update',"update Gagal");
+        }
+        redirect('admin');
+	}
+
 	public function publish($id){
 		$data = array(
-			'tipe' =>  "Publish",
+			'publish' =>  "y",
+			'updated' =>  date('Y-m-d H:i:s')
+		);
+        $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
+        if($query){
+			$this->session->set_flashdata('sukses_update',"update Berhasil");
+        }else{
+        	$this->session->set_flashdata('gagal_update',"update Gagal");
+        }
+        redirect('admin');
+	}
+
+	public function unpublish($id){
+		$data = array(
+			'publish' =>  "n",
 			'updated' =>  date('Y-m-d H:i:s')
 		);
         $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
@@ -147,7 +185,6 @@ class Admin extends CI_Controller {
 
 	public function acc_jurnal($id){
 		$data = array(
-			'jawaban' => $this->input->post('jawaban'),
 			'tipe' =>  "Selesai",
 			'updated' =>  date('Y-m-d H:i:s')
 		);
@@ -162,7 +199,6 @@ class Admin extends CI_Controller {
 
 	public function dec_jurnal($id){
 		$data = array(
-			'jawaban' => $this->input->post('jawaban'),
 			'tipe' =>  "Ditolak",
 			'updated' =>  date('Y-m-d H:i:s')
 		);

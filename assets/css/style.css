@@ -41,9 +41,9 @@ body {
 .page-head-line {
     font-weight: 900;
     padding-bottom: 20px;
-    border-bottom: 2px solid #F0677C;
+    border-bottom: 2px solid #241b45;
     text-transform: uppercase;
-    color: #F0677C;
+    color: #241b45;
     font-size: 20px;
     margin-bottom: 40px;
 }
@@ -78,7 +78,7 @@ background-color:#F0677C;
    HEADER SECTION STYLES
  ============================================================ */
 header {
-    background-color: #ff8043;
+    background-color: #222;
     color: #fff;
     padding: 10px;
     text-align: right;
@@ -157,7 +157,7 @@ header {
 /* MENU LINKS SECTION*/
 
 .menu-section {
-    background-color: #3D3D3D;
+    background-color: #222;
 }
 
 #menu-top a {
@@ -169,19 +169,19 @@ header {
 }
 
 .menu-top-active {
-    background-color: #ff8043;
+    background-color: #337ab7;
 }
 
 .menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
-    background-color:#ff8043!important;
+    background-color:#337ab7!important;
 }
 
 .menu-section .dropdown-menu > li > a:hover,.menu-section .dropdown-menu > li > a:focus {
-    background-color:#ff8043!important;
+    background-color:#337ab7!important;
 }
 
 .navbar-inverse {
-    background-color:#222;
+    background-color:#241b45;
     border-color: transparent;
 }
 
@@ -200,7 +200,7 @@ footer {
     padding: 10px;
     color: #fff;
     font-size: 12px;
-    background-color:#ff8043;
+    background-color:#241b45;
 }
 
     footer a, footer a:hover {

@@ -34,7 +34,12 @@
                             <td><?php echo $row->note ?></td>
                             <td><?php echo $row->nama ?></td>
                             <td>
-                              <a class="btn btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a> | <a class="btn btn-primary" href="" data-toggle="modal" data-target="#jawabanModal<?php echo $row->id_jurnal?>"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-danger" href="" data-toggle="modal" data-target="#fileModal<?php echo $row->id_jurnal?>"><i class="fa fa-file-pdf-o"></i></a>
+                            <?php if(($row->id_reviewer==$this->session->userdata('id_akun'))&&($row->status_reviewer1=="Pending")){?>
+                              | <a class="btn btn-primary" href="" data-toggle="modal" data-target="#jawabanModal<?php echo $row->id_jurnal?>"><i class="fa fa-edit"></i></a>
+                            <?php }else if(($row->id_reviewer2==$this->session->userdata('id_akun'))&&($row->status_reviewer2=="Pending")){?>
+                              | <a class="btn btn-primary" href="" data-toggle="modal" data-target="#jawabanModal<?php echo $row->id_jurnal?>"><i class="fa fa-edit"></i></a>
+                            <?php } ?>
                             </td>
                           </tr>
                         <?php $no++; }} ?>
@@ -139,6 +144,44 @@
           </form>
         </div>  
       </div>
+    </div>
+  </div>
+  <div id="fileModal<?php echo $row->id_jurnal?>" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">File Paper</h3>
+            </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table class="table table-striped datatable">
+                  <thead>
+                    <tr>
+                      <th width="5%">No</th>
+                      <th>Nama File</th>
+                      <th>Tipe</th>
+                      <th width="40%">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no=1;
+                      foreach($file as $r){ 
+                        if($r->id_jurnal==$row->id_jurnal){?>
+                      <tr>
+                        <td><?php echo $no ?></td>
+                        <td><?php echo $r->file_jurnal ?></td>
+                        <td><?php echo $r->tipe ?></td>
+                        <td>
+                          <a class="btn btn-success btn-xs" href="<?php echo site_url('admin/download_jurnal/'.$r->file_jurnal)?>"><i class="fa fa-download"></i></a> | <a class="btn btn-primary btn-xs" href="<?php echo site_url('assets/upload/jurnal/'.$r->file_jurnal)?>"><i class="fa fa-eye"></i></a>
+                        </td>
+                      </tr>
+                    <?php $no++;}} ?>                  
+                  </tbody>
+                </table>
+              </div>  
+            </div>  
+        </div>
     </div>
   </div>
   <?php

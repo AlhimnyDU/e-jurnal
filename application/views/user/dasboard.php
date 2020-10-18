@@ -10,7 +10,7 @@
           <div class="notice-board">
             <div class="panel panel-default">
               <div class="panel-heading">
-                Lastest Journal Submit
+                Lastest Paper Submit
                 <div class="pull-right">
                 </div>
               </div>
@@ -21,13 +21,13 @@
                   foreach($jurnal as $row){?>
                   <li>
                     <?php echo $no.". ".$row->nama_jurnal;?> <br>
-                    Aksi : <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#statusModal<?php echo $row->id_jurnal ?>" style="color:white;"> Cek Status</a>
+                    Action : <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#statusModal<?php echo $row->id_jurnal ?>" style="color:white;"> Check Status</a>
                     <?php if($row->tipe=="Revisi"){?> 
-                      <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#revisiModal<?php echo $row->id_jurnal ?>" style="color:white;">Cek Revisi Disini</a> 
+                      | <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#revisiModal<?php echo $row->id_jurnal ?>" style="color:white;">Check Review</a> 
                     <?php }else if(($row->tipe=="Selesai")||($row->tipe=="Ditolak")){?> 
-                      | <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#selesaiModal<?php echo $row->id_jurnal ?>" style="color:white;"> Cek Pesan</a>
+                      | <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#selesaiModal<?php echo $row->id_jurnal ?>" style="color:white;"> Check Message</a>
                     <?php }else if($row->tipe=="Dikembalikan"){?>
-                      | <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tolakModal<?php echo $row->id_jurnal ?>" style="color:white;"> Cek Pesan</a>
+                      | <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tolakModal<?php echo $row->id_jurnal ?>" style="color:white;"> Check Message</a>
                     <?php } ?>
                   </li>
                   <?php $no++; } ?>
@@ -51,10 +51,12 @@
                   <div class="tab-pane fade active in" id="dashboard">
                   <center><label>Input New Submission</label></center>
                   <hr>
+                  <span class="btn btn-primary btn-sm">Deadline : <?php echo(date('d F Y - H:i',strtotime($upload_awal->batas_waktu))) ?> WIB</span>
+                    <hr> 
                     <form method="POST" action="<?php echo site_url('user/addJurnal')?>" enctype="multipart/form-data">
-                      <label>Journal Name :</label> <input type="text" name="nama_jurnal" class="form-control" required>
-                      <label>Bidang :</label>
-                      <select name="bidang" class="form-control" required="">
+                      <label>Paper Name :</label> <input type="text" name="nama_jurnal" class="form-control" required>
+                      <label>Category :</label>
+                      <select name="Category" class="form-control" required="">
                         <option value="" disabled selected hidden>Pilih...</option>
                         <option value="TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK">TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK</option>
                         <option value="TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT">TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT</option>
@@ -63,16 +65,20 @@
                         <option value="TEKNOLOGI MANUFAKTUR DAN METROLOGI">TEKNOLOGI MANUFAKTUR DAN METROLOGI</option>
                         <option value="Lainnya">Lainnya</option>
                       </select> 
-                      <label>Upload Journal File :</label> <input type="file" class="dropify" data-height="75" name="file_jurnal" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
+                      <label>Upload Paper File :</label> <input type="file" class="dropify" data-height="75" name="file_jurnal" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
                       <!-- <label>Upload Payment Bill :</label> <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf"> -->
                       <label>Note :</label> <textarea rows="3" class="form-control" name="note"></textarea>
-                      <input type="checkbox" required> Saya menyetujui segala ketentuan yang berlaku
+                      <input type="checkbox" required> I agree to terms and conditions.
                       <hr>
-                      <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-envelope"></span> Submit</button>
+                      <?php if(date('Y-m-d H:i:s') < $upload_awal->batas_waktu){ ?>
+                        <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-envelope"></span> Submit</button>
+                      <?php }else{ ?>
+                        <span class="btn btn-danger btn-lg" style="color:white;"><i class="fa fa-ban"></i> Telah Melewati Batas Waktu Upload Paper <?php echo(date('d/m/Y',strtotime($upload_awal->batas_waktu))) ?></span>
+                      <?php } ?>
                     </form>
                     <br>
                     <div class="panel-footer text-muted">
-                      <strong>Note :</strong> Please note that your journal file is correct
+                      <strong>Note :</strong> Please note that your paper file is correct
                     </div>
                   </div>
                   <div class="tab-pane fade" id="editprofile">
@@ -80,11 +86,11 @@
                     <hr>
                     <form method="post" action="<?php echo site_url('user/editProfile/'.$akun['id_akun'])?>" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Lengkap</label>
+                                <label for="exampleInputEmail1">Full Name</label>
                                 <input type="text" class="form-control" name="nama" value="<?php echo $akun['nama']?>" placeholder="Isikan Nama Lengkap" />
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Lahir</label>
+                                <label for="exampleInputEmail1">Birthday</label>
                                 <input type="date" class="form-control" name="tgl_lahir" value="<?php echo $akun['tgl_lahir']?>" placeholder="Isikan Tanggal Lahir" />
                             </div>
                             <div class="form-group">
@@ -92,15 +98,15 @@
                                 <input type="email" class="form-control" name="email" value="<?php echo $akun['email']?>" placeholder="Isikan Email" />
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Asal Institusi/Perguruan Tinggi</label>
+                                <label for="exampleInputEmail1">Institute/College/University</label>
                                 <input type="text" class="form-control" name="asal_institusi" value="<?php echo $akun['asal_institusi']?>" placeholder="Isikan Nama Institusi"/>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Telepon</label>
+                                <label for="exampleInputEmail1">Number Phone</label>
                                 <input type="text" class="form-control" name="telp" value="<?php echo $akun['telp']?>" placeholder="Isikan Nomor Telepon"/>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Alamat</label>
+                                <label for="exampleInputEmail1">Address</label>
                                 <textarea class="form-control" name="alamat" placeholder="Isikan Alamat" ><?php echo $akun['alamat']?></textarea>
                             </div>
                             <center>
@@ -126,37 +132,57 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 class="modal-title">Revisi</h3>
+                <h3 class="modal-title">Review</h3>
             </div>
             <div class="modal-body">
                 <form method="post" action="<?php echo site_url('user/revisi/').$row->id_jurnal?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col col-lg-12">
                             <div class="form-group">
-                              <center><h4><b>Tanggapan reviewer</b></h4></center>
+                              <center><h4><b>Note Reviewer 1</b></h4></center>
                               <br>
                               <?php echo $row->jawaban?>
                             </div>
                             <hr>
                             <div class="form-group">
-                              <label>File Tanggapan Revisi : </label>
+                              <label>File Review 1 : </label>
                               <?php if($row->file_jawaban!=NULL){ ?>
-                              <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jawaban)?>"><i class="fa fa-file-pdf-o"></i></a>
+                              <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jawaban)?>"><i class="fa fa-file-pdf-o"></i> Download</a>
                               <?php }else{ ?>
                               <span class="label label-danger">Tidak ada informasi berupa file</span>
                               <?php } ?>
                             </div>
                             <hr>
                             <div class="form-group">
-                              <label>Upload Journal File :</label> 
+                              <center><h4><b>Note Reviewer 2</b></h4></center>
+                              <br>
+                              <?php echo $row->jawaban2?>
+                            </div>
+                            <div class="form-group">
+                              <label>File Review 2 : </label>
+                              <?php if($row->file_jawaban2!=NULL){ ?>
+                              <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jawaban2)?>"><i class="fa fa-file-pdf-o"></i> Download</a>
+                              <?php }else{ ?>
+                              <span class="label label-danger">Tidak ada informasi berupa file</span>
+                              <?php } ?>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                            <?php if(date('Y-m-d H:i:s') < $upload_revisi->batas_waktu){ ?>
+                              <label>Upload Paper File :</label><small style="color:red;"> *Deadline for fix paper : <?php echo(date('d F Y - H:i',strtotime($upload_revisi->batas_waktu))) ?> WIB </small>
                               <input type="file" class="dropify" data-height="75" name="file_revisi" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
+                            <?php }else{ ?>
+                              <span class="label label-danger">Telah Melewati Deadline : <?php echo(date('d F Y - H:i',strtotime($upload_revisi->batas_waktu))) ?> WIB</span>
+                            <?php } ?>
                             </div>
                             <div class="form-group">
                             <label>Note :</label> <textarea rows="5" class="form-control" name="note"></textarea>
                             </div>
                             
                             <div class="modal-footer">
+                              <?php if(date('Y-m-d H:i:s') < $upload_revisi->batas_waktu){ ?>
                                 <button type="submit" class="btn btn-primary pull-right">Update</button>
+                              <?php } ?>
                                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
@@ -172,27 +198,54 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 class="modal-title">Review</h3>
+                <h3 class="modal-title">Final Result</h3>
             </div>
             <div class="modal-body">
-              <div class="row">
-                <div class="col col-lg-12">
-                  <div class="form-group">
-                    <center><h4><b>Tanggapan reviewer</b></h4></center>
-                    <br>
-                    <?php echo $row->jawaban?>
-                  </div>
-                  <hr>
-                  <div class="form-group">
-                    <label>File Tanggapan Revisi : </label>
-                    <?php if($row->file_jawaban!=NULL){ ?>
-                    <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jawaban)?>"><i class="fa fa-file-pdf-o"></i></a>
-                    <?php }else{ ?>
-                    <span class="label label-danger">Tidak ada informasi berupa file</span>
-                    <?php } ?>
-                  </div>
-                </div>
-              </div>
+                    <div class="row">
+                        <div class="col col-lg-12">
+                            <div class="form-group">
+                              <center><h4><b>Note Reviewer 1</b></h4></center>
+                              <br>
+                              <?php echo $row->jawaban?>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                              <label>File Review 1 : </label>
+                              <?php if($row->file_jawaban!=NULL){ ?>
+                              <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jawaban)?>"><i class="fa fa-file-pdf-o"></i></a>
+                              <?php }else{ ?>
+                              <span class="label label-danger">Tidak ada informasi berupa file</span>
+                              <?php } ?>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                              <center><h4><b>Note reviewer 2</b></h4></center>
+                              <br>
+                              <?php echo $row->jawaban2?>
+                            </div>
+                            <div class="form-group">
+                              <label>File Review 2 : </label>
+                              <?php if($row->file_jawaban2!=NULL){ ?>
+                              <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jawaban2)?>"><i class="fa fa-file-pdf-o"></i></a>
+                              <?php }else{ ?>
+                              <span class="label label-danger">Tidak ada informasi berupa file</span>
+                              <?php } ?>
+                            </div>
+                            <?php if($row->tipe=="Selesai"){?>
+                            <hr>
+                            <form action="<?php echo site_url() ?>user/upload_bayar/<?= $row->id_jurnal ?>" method="POST" enctype="multipart/form-data">
+                              <div class="form-grup">
+                                  <label>Upload Bukti Pembayaran :</label> 
+                                  <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf" data-default-file="<?php echo site_url() ?>assets/upload/bayar/<?= $row->file_bayar ?>">
+                              </div>
+                              <div class="modal-footer">
+                                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary pull-right">Submit</button> 
+                            </div>
+                            </form>
+                            <?php } ?>
+                        </div>
+                    </div>
             </div>  
         </div>
     </div>
@@ -286,19 +339,6 @@
                                   </a>
                                 </div>
                             </div>
-                            <?php if($row->tipe=="Selesai"){?>
-                              <hr>
-                            <form action="<?php echo site_url() ?>user/upload_bayar/<?= $row->id_jurnal ?>" method="POST" enctype="multipart/form-data">
-                              <div class="form-grup">
-                                  <label>Upload Bukti Pembayaran :</label> 
-                                  <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf" data-default-file="<?php echo site_url() ?>assets/upload/bayar/<?= $row->file_bayar ?>">
-                              </div>
-                              <div class="modal-footer">
-                                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary pull-right">Submit</button> 
-                            </div>
-                            </form>
-                            <?php } ?>
                           </div>
                         </div>
                     </div>

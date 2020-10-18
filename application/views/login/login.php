@@ -22,8 +22,12 @@
                         </div>
                         <div class="form-grup">
                             <center><button type="submit" class="btn btn-primary">Log In</button> <hr> 
-                            <p>Tidak memiliki akun ? Silahkan Registrasi</p>
-                            <a href="<?php echo site_url()?>/login/register" class="btn btn-success">Register</a></center>
+                            <p>Tidak memiliki akun ? Silahkan registrasi dengan klik tombol dibawah ini, batas waktu pendaftaran : <span class="label label-success"><?php echo date('d F Y',strtotime($registrasi->batas_waktu)) ?></span></p> 
+                            <?php if(date('Y-m-d H:i:s') < $registrasi->batas_waktu){ ?>
+                                <a href="<?php echo site_url()?>/login/register" class="btn btn-danger">Register</a></center>
+                            <?php }else{ ?>
+                                <label class="label label-default">Registrasi telah ditutup, tunggu seminar RATMI selanjutnya</label>
+                            <?php } ?>
                         </div>
                     </form>
                 </div>

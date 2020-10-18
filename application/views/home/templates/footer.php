@@ -10,9 +10,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </div>
 </div>
 <!--footer end -->
-
 <!-- jquery -->
-<script src="<?php echo base_url() ?>assets/homepage/assets/js/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/homepage/assets/js/jquery.min.js"></script> 
 <!-- bootstrap -->
 <script src="<?php echo base_url() ?>assets/homepage/assets/js/popper.js"></script>
 <script src="<?php echo base_url() ?>assets/homepage/assets/js/bootstrap.min.js"></script>
@@ -29,5 +28,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="<?php echo base_url() ?>assets/homepage/assets/js/wow.min.js"></script>
 <!-- Custom js -->
 <script src="<?php echo base_url() ?>assets/homepage/assets/js/main.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script>
+        $(document).ready( function () {
+            $('.datatable').DataTable();
+        } );
+    </script>
 </body>
 </html>

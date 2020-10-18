@@ -26,8 +26,9 @@ class Login extends CI_Controller {
 	}
 
 	public function index(){
+		$data['registrasi'] = $this->db->select('*')->from('tbl_timeline')->where('id_timeline',3)->get()->row();
 		$this->load->view('login/templates/header');
-		$this->load->view('login/login');
+		$this->load->view('login/login',$data);
 		$this->load->view('login/templates/footer');
     }
     
@@ -58,9 +59,15 @@ class Login extends CI_Controller {
 				$this->session->set_flashdata('sukses_login',TRUE);
 				$this->session->set_userdata('username',$select->nama);
 				$this->session->set_userdata('admin',"admin");
-				$this->session->set_userdata('id_admin',$select->id_akun);
+				$this->session->set_userdata('id_akun',$select->id_akun);
         		redirect('admin');
-            }
+            }else if($select->role_akun == "bendahara"){
+				$this->session->set_flashdata('sukses_login',TRUE);
+				$this->session->set_userdata('username',$select->nama);
+				$this->session->set_userdata('bendahara',"bendahara");
+				$this->session->set_userdata('id_akun',$select->id_akun);
+				redirect('bendahara');
+			}
         }else{
 			$this->session->set_flashdata('gagal_login',TRUE);
             redirect('login');

@@ -28,68 +28,118 @@ class Reviewer extends CI_Controller {
 	}
 
 	public function index(){
-        $data['reviewer'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "reviewer")->get()->result();
-        $data['jurnal'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('id_reviewer', $this->session->userdata('id_akun'))->or_where('id_reviewer2', $this->session->userdata('id_akun'))->get()->result();
-        $data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('id_reviewer', $this->session->userdata('id_akun'))->where('tipe', "Selesai")->or_where('tipe', "Keputusan Akhir")->get()->result();
-		$this->load->view('reviewer/templates/header');
-		$this->load->view('reviewer/dashboard',$data);
-		$this->load->view('reviewer/templates/footer');
+		if($this->session->userdata('username')){
+			if($this->session->userdata('reviewer')){
+				$data['reviewer'] = $this->db->select('*')->from('tbl_akun')->where('role_akun', "reviewer")->get()->result();
+				$data['jurnal'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('id_reviewer', $this->session->userdata('id_akun'))->or_where('id_reviewer2', $this->session->userdata('id_akun'))->get()->result();
+				$data['jurnal_fin'] = $this->db->select('*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->where('id_reviewer', $this->session->userdata('id_akun'))->where('tipe', "Selesai")->or_where('tipe', "Keputusan Akhir")->get()->result();
+				$data['file'] = $this->db->select('*')->from('tbl_file')->get()->result();
+				$this->load->view('reviewer/templates/header');
+				$this->load->view('reviewer/dashboard',$data);
+				$this->load->view('reviewer/templates/footer');
+			}else{
+				echo "404 - NOT FOUND";
+			}
+
+		}else{
+			redirect('login');
+		}
     }
-    
+
     public function jawaban($id){
 		$reviewer = $this->db->where('id_jurnal',$id)->get('tbl_jurnal')->row_array();
 		if($reviewer['id_reviewer']==$this->session->userdata('id_akun')){
-			if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Tolak"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Revisi"))){
-				$data = array(
-					'status_reviewer1' => $this->input->post('statusreviewer'),
-					'tipe' => "Revisi",
-					'jawaban' => $this->input->post('jawaban'),
-					'file_jawaban' => $this->upload_jawaban(),
-					'updated' =>  date('Y-m-d H:i:s')
-				);
-			}else if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Pending"))){
-				$data = array(
-					'status_reviewer1' => $this->input->post('statusreviewer'),
-					'tipe' => "Menunggu Reviewer",
-					'jawaban' => $this->input->post('jawaban'),
-					'file_jawaban' => $this->upload_jawaban(),
-					'updated' =>  date('Y-m-d H:i:s')
-				);
-			}else if((($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Tolak")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Terima"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Tolak"))){
-				$data = array(
-					'status_reviewer1' => $this->input->post('statusreviewer'),
-					'tipe' => "Keputusan Akhir",
-					'jawaban' => $this->input->post('jawaban'),
-					'file_jawaban' => $this->upload_jawaban(),
-					'updated' =>  date('Y-m-d H:i:s')
-				);
+			if($reviewer['tipe']!="Pengajuan akhir"){
+				if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Tolak"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Revisi"))){
+					$data = array(
+						'status_reviewer1' => $this->input->post('statusreviewer'),
+						'tipe' => "Revisi",
+						'jawaban' => $this->input->post('jawaban'),
+						'file_jawaban' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}else if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer2']=="Pending")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Pending")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Pending"))){
+					$data = array(
+						'status_reviewer1' => $this->input->post('statusreviewer'),
+						'tipe' => "Menunggu Reviewer",
+						'jawaban' => $this->input->post('jawaban'),
+						'file_jawaban' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}else if((($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Tolak")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Terima"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Tolak")) ){
+					$data = array(
+						'status_reviewer1' => $this->input->post('statusreviewer'),
+						'tipe' => "Keputusan Akhir",
+						'jawaban' => $this->input->post('jawaban'),
+						'file_jawaban' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}
+			}else{
+				if((($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer2']=="Pending")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer2']=="Pending"))){
+					$data = array(
+						'status_reviewer1' => $this->input->post('statusreviewer'),
+						'tipe' => "Pengajuan akhir",
+						'jawaban' => $this->input->post('jawaban'),
+						'file_jawaban' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}else{
+					$data = array(
+						'status_reviewer1' => $this->input->post('statusreviewer'),
+						'tipe' => "Keputusan Akhir",
+						'jawaban' => $this->input->post('jawaban'),
+						'file_jawaban' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}
 			}
 		} else if($reviewer['id_reviewer2']==$this->session->userdata('id_akun')){
-			if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Tolak"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Revisi"))){
-				$data = array(
-					'status_reviewer2' => $this->input->post('statusreviewer'),
-					'tipe' => "Revisi",
-					'jawaban' => $this->input->post('jawaban'),
-					'file_jawaban' => $this->upload_jawaban(),
-					'updated' =>  date('Y-m-d H:i:s')
-				);
-			}
-			else if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Pending"))){
-				$data = array(
-					'status_reviewer2' => $this->input->post('statusreviewer'),
-					'tipe' => "Menunggu Reviewer",
-					'jawaban' => $this->input->post('jawaban'),
-					'file_jawaban' => $this->upload_jawaban(),
-					'updated' =>  date('Y-m-d H:i:s')
-				);
-			}else if((($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Tolak")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Terima"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Tolak"))){
-				$data = array(
-					'status_reviewer2' => $this->input->post('statusreviewer'),
-					'tipe' => "Keputusan Akhir",
-					'jawaban' => $this->input->post('jawaban'),
-					'file_jawaban' => $this->upload_jawaban(),
-					'updated' =>  date('Y-m-d H:i:s')
-				);
+			if($reviewer['tipe']!="Pengajuan akhir"){
+				if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Revisi")) || (($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Tolak"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Revisi"))){
+					$data = array(
+						'status_reviewer2' => $this->input->post('statusreviewer'),
+						'tipe' => "Revisi",
+						'jawaban2' => $this->input->post('jawaban'),
+						'file_jawaban2' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}
+				else if((($this->input->post('statusreviewer')=="Revisi") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Pending"))){
+					$data = array(
+						'status_reviewer2' => $this->input->post('statusreviewer'),
+						'tipe' => "Menunggu Reviewer",
+						'jawaban2' => $this->input->post('jawaban'),
+						'file_jawaban2' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}else if((($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Terima")) || (($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Tolak")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Terima"))  || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Tolak"))){
+					$data = array(
+						'status_reviewer2' => $this->input->post('statusreviewer'),
+						'tipe' => "Keputusan Akhir",
+						'jawaban2' => $this->input->post('jawaban'),
+						'file_jawaban2' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}
+			}else{
+				if((($this->input->post('statusreviewer')=="Terima") && ($reviewer['status_reviewer1']=="Pending")) || (($this->input->post('statusreviewer')=="Tolak") && ($reviewer['status_reviewer1']=="Pending"))){
+					$data = array(
+						'status_reviewer2' => $this->input->post('statusreviewer'),
+						'tipe' => "Pengajuan akhir",
+						'jawaban2' => $this->input->post('jawaban'),
+						'file_jawaban2' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}else{
+					$data = array(
+						'status_reviewer2' => $this->input->post('statusreviewer'),
+						'tipe' => "Keputusan Akhir",
+						'jawaban2' => $this->input->post('jawaban'),
+						'file_jawaban2' => $this->upload_jawaban(),
+						'updated' =>  date('Y-m-d H:i:s')
+					);
+				}
 			}
 		}
 		$query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);

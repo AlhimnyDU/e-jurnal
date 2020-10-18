@@ -45,10 +45,11 @@
       </div>
       <div class="row">
         <div class="col-md-12">
+          <h6 class="page-head-line">Paper</h6>
           <div class="notice-board">
             <div class="panel panel-primary">
               <div class="panel-heading">
-                List jurnal yang telah di upload
+                List paper yang perlu dibagikan ke reviewer
               </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -72,10 +73,15 @@
                             <td><?php echo $row->bidang ?></td>
                             <td><?php echo $row->nama ?></td>
                             <td>
-                            <a class="btn btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
+                            <?php $no=1;
+                              if($row->file_bayar!=NULL){ ?>
+                              <a class="btn btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | 
+                              <?php }?>
+                              <a class="btn btn-danger" href="" data-toggle="modal" data-target="#fileModal<?php echo $row->id_jurnal?>"><i class="fa fa-file-pdf-o"></i></a>
                             </td>
                             <td>
-                              <a class="btn btn-primary" href="" data-toggle="modal" data-target="#reviewerModal<?php echo $row->id_jurnal?>"><i class="fa fa-check"></i></a>  | <a class="btn btn-danger" href="" data-toggle="modal" data-target="#tolakModal<?php echo $row->id_jurnal?>"><i class="fa fa-times"></i></a>
+                              <a class="btn btn-primary" href="" data-toggle="modal" data-target="#reviewerModal<?php echo $row->id_jurnal?>"><i class="fa fa-check"></i></a>  | 
+                              <a class="btn btn-danger" href="" data-toggle="modal" data-target="#tolakModal<?php echo $row->id_jurnal?>"><i class="fa fa-times"></i></a>
                             </td>
                           </tr>
                         <?php $no++; } ?>
@@ -87,12 +93,13 @@
           </div>
         </div>
       </div>
+      <hr>
           <div class="row">
             <div class="col-md-12">
               <div class="notice-board">
                 <div class="panel panel-info">
                   <div class="panel-heading">
-                    Jurnal Proses
+                    Paper yang sedang diproses
                   </div>
                   <div class="panel-body">
                     <ul class="nav nav-tabs">
@@ -135,8 +142,10 @@
                                   <a class="btn btn-sm btn-success" href="<?php echo site_url('admin/acc_jurnal/'.$row->id_jurnal)?>"><i class="fa fa-check"></i></a> | 
                                   <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/dec_jurnal/'.$row->id_jurnal)?>"><i class="fa fa-times"></i></a> | 
                                 <?php } ?>
-                                  <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | 
-                                  <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
+                                <?php if($row->file_bayar!=NULL){ ?>
+                                  <a class="btn btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | 
+                                 <?php }?> 
+                                  <a class="btn btn-danger" href="" data-toggle="modal" data-target="#file2Modal<?php echo $row->id_jurnal?>"><i class="fa fa-file-pdf-o"></i></a>
                                 </td>
                               </tr>
                             <?php $no++; } ?>
@@ -183,7 +192,15 @@
                                   <?php } ?>
                                 </td>
                                 <td>
-                                  <a class="btn btn-sm btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | <a class="btn btn-sm btn-danger" href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>"><i class="fa fa-file-pdf-o"></i></a>
+                                  <?php if($row->publish=='y'){ ?>
+                                    <a class="btn btn-default" href="<?php echo site_url('admin/unpublish/'.$row->id_jurnal)?>"> Unpublish</a> | 
+                                  <?php }else{?>
+                                    <a class="btn btn-primary" href="<?php echo site_url('admin/publish/'.$row->id_jurnal)?>"> Publish</a> | 
+                                  <?php }?> 
+                                  <?php if($row->file_bayar!=NULL){ ?>
+                                    <a class="btn btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | 
+                                  <?php }?>  
+                                  <a class="btn btn-danger" href="" data-toggle="modal" data-target="#file3Modal<?php echo $row->id_jurnal?>"><i class="fa fa-file-pdf-o"></i></a>
                                 </td>
                               </tr>
                             <?php $no++; } ?>
@@ -197,9 +214,50 @@
               </div>
             </div>
           </div>
-          <hr>
+          <br>
           <div class="row">
             <div class="col-md-12">
+              <h6 class="page-head-line">Pengaturan Timeline Waktu</h6>
+              <div class="notice-board">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    Pengaturan Batas Waktu Upload
+                  </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="5%">No</th>
+                                    <th>Nama Timeline</th>
+                                    <th>Batas Waktu</th>
+                                    <th width="10%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php $no=1;
+                            foreach($timeline as $row){ ?>
+                              <tr>
+                                <td align="center"><?php echo $no ?></td>
+                                <td><?php echo $row->nama_timeline ?></td>
+                                <td><?php echo date('d F Y - H:i',strtotime($row->batas_waktu)) ?></td>
+                                <td>
+                                  <a class="btn btn-primary" href="" data-toggle="modal" data-target="#timelineModal<?php echo $row->id_timeline?>"><i class="fa fa-edit"></i></a>
+                                </td>
+                              </tr>
+                            <?php $no++; } ?>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <h6 class="page-head-line">Pengaturan Akun Peserta dan Reviewer</h6>
                 <div class="notice-board">
                     <div class="panel panel-success">
                     <div class="panel-heading">
@@ -291,7 +349,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Tambah Akun</h3>
+                <h3 class="modal-title">Tambah Akun Peserta</h3>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -339,7 +397,37 @@
         </div>
     </div>
   </div>
-
+  <?php
+    $no=1; 
+    foreach($timeline as $row){ 
+  ?>
+  <div id="timelineModal<?php echo $row->id_timeline?>" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">Setting Schedule</h3>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="<?php echo site_url('admin/schedule/').$row->id_timeline?>" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col col-lg-12">
+                            <div class="form-group">
+                              <label>Batas Waktu</label>
+                              <input type="datetime-local" class="form-control" name="batas_waktu" value="<?php echo strftime('%Y-%m-%dT%H:%M:%S', strtotime($row->batas_waktu)) ?>"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Ok</button>
+                                <button class="btn btn-danger pull-right" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>  
+        </div>
+    </div>
+  </div> 
+  <?php } ?>                       
   <?php
     $no=1; 
     foreach($jurnal as $row){ 
@@ -361,13 +449,9 @@
                                     <option value="" disabled selected hidden>Pilih...</option>
                                     <?php 
                                       foreach($reviewer as $r){
-                                        if($row->bidang!="Lainnya"){
-                                          if($row->bidang==$r->bidang){
                                     ?>
                                     <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
-                                          <?php }else{ ?>
-                                    <option value="<?php echo $r->id_akun ?>"><?php echo $r->nama ?></option>
-                                    <?php }}} ?>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -421,10 +505,138 @@
         </div>
     </div>
   </div>
+  <div id="fileModal<?php echo $row->id_jurnal?>" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">File Paper</h3>
+            </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table class="table table-striped datatable">
+                  <thead>
+                    <tr>
+                      <th width="5%">No</th>
+                      <th>Nama File</th>
+                      <th>Tipe</th>
+                      <th width="40%">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no=1;
+                      foreach($file as $r){ 
+                        if($r->id_jurnal==$row->id_jurnal){?>
+                      <tr>
+                        <td><?php echo $no ?></td>
+                        <td><?php echo $r->file_jurnal ?></td>
+                        <td><?php echo $r->tipe ?></td>
+                        <td>
+                          <a class="btn btn-success btn-xs" href="<?php echo site_url('admin/download_jurnal/'.$r->file_jurnal)?>"><i class="fa fa-download"></i></a> | <a class="btn btn-primary btn-xs" href="<?php echo site_url('assets/upload/jurnal/'.$r->file_jurnal)?>"><i class="fa fa-eye"></i></a>
+                        </td>
+                      </tr>
+                    <?php $no++;}} ?>                  
+                  </tbody>
+                </table>
+              </div>  
+            </div>  
+        </div>
+    </div>
+  </div>
   <?php
     } 
   ?>
 
+<?php
+    $no=1; 
+    foreach($jurnal_ulas as $row){ 
+  ?>
+  <div id="file2Modal<?php echo $row->id_jurnal?>" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">File Paper</h3>
+            </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table class="table table-striped datatable">
+                  <thead>
+                    <tr>
+                      <th width="5%">No</th>
+                      <th>Nama File</th>
+                      <th>Tipe</th>
+                      <th width="40%">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no=1;
+                      foreach($file as $k){ 
+                        if($k->id_jurnal==$row->id_jurnal){?>
+                      <tr>
+                        <td><?php echo $no ?></td>
+                        <td><?php echo $k->file_jurnal ?></td>
+                        <td><?php echo $k->tipe ?></td>
+                        <td>
+                          <a class="btn btn-success btn-xs" href="<?php echo site_url('admin/download_jurnal/'.$k->file_jurnal)?>"><i class="fa fa-download"></i></a> | <a class="btn btn-primary btn-xs" href="<?php echo site_url('assets/upload/jurnal/'.$k->file_jurnal)?>"><i class="fa fa-eye"></i></a>
+                        </td>
+                      </tr>
+                    <?php $no++;}} ?>                  
+                  </tbody>
+                </table>
+              </div>  
+            </div>  
+        </div>
+    </div>
+  </div>
+  <?php
+    } 
+  ?>
+<?php
+    $no=1; 
+    foreach($jurnal_fin as $row){ 
+  ?>
+  <div id="file3Modal<?php echo $row->id_jurnal?>" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">File Paper</h3>
+            </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table class="table table-striped datatable">
+                  <thead>
+                    <tr>
+                      <th width="5%">No</th>
+                      <th>Nama File</th>
+                      <th>Tipe</th>
+                      <th width="40%">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no=1;
+                      foreach($file as $k){ 
+                        if($k->id_jurnal==$row->id_jurnal){?>
+                      <tr>
+                        <td><?php echo $no ?></td>
+                        <td><?php echo $k->file_jurnal ?></td>
+                        <td><?php echo $k->tipe ?></td>
+                        <td>
+                          <a class="btn btn-success btn-xs" href="<?php echo site_url('admin/download_jurnal/'.$k->file_jurnal)?>"><i class="fa fa-download"></i></a> | <a class="btn btn-primary btn-xs" href="<?php echo site_url('assets/upload/jurnal/'.$k->file_jurnal)?>"><i class="fa fa-eye"></i></a>
+                        </td>
+                      </tr>
+                    <?php $no++;}} ?>                  
+                  </tbody>
+                </table>
+              </div>  
+            </div>  
+        </div>
+    </div>
+  </div>
+  <?php
+    } 
+  ?>
 <?php
     $no=1; 
     foreach($akun as $row){ 

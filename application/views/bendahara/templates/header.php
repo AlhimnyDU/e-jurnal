@@ -8,7 +8,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>User | E-Jurnal</title>
+    <title>Pembendaharaan | RATMI</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
@@ -16,9 +16,8 @@
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css">
-    <script src="https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,7 +32,7 @@
                 <div class="col-md-12">
                     <strong>Email: </strong>Mesin@itenas.ac.id
                     &nbsp;&nbsp;
-                    <strong>Telepon: </strong>022 7831258
+                    <strong>Telp: </strong>(022) 7865421
                 </div>
 
             </div>
@@ -49,10 +48,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="<?php echo base_url() ?>home">
-
                     <img src="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" />
                 </a>
-
             </div>
         </div>
     </div>
@@ -63,8 +60,7 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top" href="#dashboard"  data-toggle="tab">Paper</a></li>
-                            <li><a class="menu-top" href="#editprofile"  data-toggle="tab">Edit Profile</a></li>
+                            <li><a class="menu-top-active" href="#dashboard">Dashboard</a></li>
                             <li><a class="menu-top" href="<?php echo site_url('login/logout') ?>">Log Out</a></li>
                         </ul>
                     </div>

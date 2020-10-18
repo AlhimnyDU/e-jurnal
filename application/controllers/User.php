@@ -28,11 +28,23 @@ class User extends CI_Controller {
 	}
 
 	public function index(){
-		$data['akun'] = $this->db->select('*')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
-		$data['jurnal'] = $this->db->select('*')->from('tbl_jurnal')->where('id_akun', $this->session->userdata('id_akun'))->get()->result();
-		$this->load->view('user/templates/header',$data);
-		$this->load->view('user/dasboard');
-		$this->load->view('user/templates/footer');
+		if($this->session->userdata('username')){
+			if($this->session->userdata('user')){
+				$data['akun'] = $this->db->select('*')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
+				$data['jurnal'] = $this->db->select('*')->from('tbl_jurnal')->where('id_akun', $this->session->userdata('id_akun'))->get()->result();
+				$data['upload_awal'] = $this->db->select('*')->from('tbl_timeline')->where('id_timeline',1)->get()->row();
+				$data['upload_revisi'] = $this->db->select('*')->from('tbl_timeline')->where('id_timeline',2)->get()->row();
+				$this->load->view('user/templates/header',$data);
+				$this->load->view('user/dasboard');
+				$this->load->view('user/templates/footer');
+			}else{
+				echo "404 - NOT FOUND";
+			}
+
+		}else{
+			redirect('login');
+		}
+
 	}
 
 	public function editProfile($id){
@@ -95,7 +107,7 @@ class User extends CI_Controller {
 
 	public function addJurnal(){
 		$nama_akun = $this->db->select('nama')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
-		$filename = $this->input->post('bidang').'_'.$this->input->post('nama_jurnal').'_'.$nama_akun['nama'];
+		$filename = $nama_akun['nama']."_".$this->input->post('nama_jurnal');
 		$config['upload_path']          = './assets/upload/jurnal/';
 		$config['allowed_types']        = 'pdf';
 		$config['file_name']			= $filename;
@@ -104,15 +116,23 @@ class User extends CI_Controller {
 		$data = array(
 			'nama_jurnal' => $this->input->post('nama_jurnal'),
 			'bidang'  => $this->input->post('bidang'),
-			'file_jurnal' => $this->upload->data('file_name'),
 			'id_akun' => $this->session->userdata('id_akun'),
 			'note'	=> $this->input->post('note'),
 			'tipe'	=> "Awal",
 			'created' => date('Y-m-d H:i:s'),
-			'updated' => date('Y-m-d H:i:s'),
+			'updated' => date('Y-m-d H:i:s')
 		);
 		$query = $this->db->insert('tbl_jurnal',$data);
 		if($query){
+			$id_jurnal = $this->db->select('id_jurnal')->from('tbl_jurnal')->where('nama_jurnal', $this->input->post('nama_jurnal'))->get()->row_array();
+			$jurnal = array(
+				'file_jurnal' => $this->upload->data('file_name'),
+				'tipe' => "awal",
+				'id_jurnal' => $id_jurnal['id_jurnal'],
+				'created' => date('Y-m-d H:i:s'),
+				'updated' => date('Y-m-d H:i:s')
+			);
+			$insert = $this->db->insert('tbl_file',$jurnal);
 			$this->session->set_flashdata('sukses_add',TRUE);
 		}else{
 			$this->session->set_flashdata('error_add',TRUE);
@@ -122,7 +142,7 @@ class User extends CI_Controller {
 
 	public function revisi($id){
 			$nama_akun = $this->db->select('nama')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
-			$filename = $this->input->post('bidang').'_'.$this->input->post('nama_jurnal').'_'.$nama_akun['nama'].'_Revisi';
+			$filename = $nama_akun['nama']."_".$this->input->post('nama_jurnal')."_Revisi";
 			$config['upload_path']          = './assets/upload/jurnal/';
 			$config['allowed_types']        = 'pdf';
 			$config['file_name']			= $filename;
@@ -132,12 +152,19 @@ class User extends CI_Controller {
 				'tipe' => "Pengajuan akhir",
 				'status_reviewer1' => "Pending",
 				'status_reviewer2' => "Pending",
-				'file_jurnal' => $this->upload->data('file_name'),
 				'note' => $this->input->post('note'),
 				'updated' =>  date('Y-m-d H:i:s')
 			);
 			$query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
 			if($query){
+				$jurnal = array(
+					'file_jurnal' => $this->upload->data('file_name'),
+					'tipe' => "revisi",
+					'id_jurnal' => $id,
+					'created' => date('Y-m-d H:i:s'),
+					'updated' => date('Y-m-d H:i:s')
+				);
+				$insert = $this->db->insert('tbl_file',$jurnal);
 				$this->session->set_flashdata('sukses_update',"Update Berhasil");
 			}else{
 				$this->session->set_flashdata('error_update',"Update Gagal");
