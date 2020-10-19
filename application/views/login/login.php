@@ -4,9 +4,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="page-head-line">Log In</h4>
-
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -22,32 +20,27 @@
                         </div>
                         <div class="form-grup">
                             <center><button type="submit" class="btn btn-primary">Log In</button> <hr> 
-                            <p>Tidak memiliki akun ? Silahkan registrasi dengan klik tombol dibawah ini, batas waktu pendaftaran : <span class="label label-success"><?php echo date('d F Y',strtotime($registrasi->batas_waktu)) ?></span></p> 
-                            <?php if(date('Y-m-d H:i:s') < $registrasi->batas_waktu){ ?>
+                            <p>Doesn't have account ? Registration first with click button in below</p> 
                                 <a href="<?php echo site_url()?>/login/register" class="btn btn-danger">Register</a></center>
-                            <?php }else{ ?>
-                                <label class="label label-default">Registrasi telah ditutup, tunggu seminar RATMI selanjutnya</label>
-                            <?php } ?>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <div class="alert alert-danger">
-                        Kepada pemakalah yang belum memiliki akun, silahkan untuk melakukan registrasi terlebih dahulu
+                    <div class="alert alert-info">
+                    <strong> Important to remember :</strong>
                         <br />
-                         <strong> Ketentuan yang berlaku :</strong>
                         <ul>
                             <li>
-                                Point Ini disesuaikan dengan konten
+                                Registration and submit paper ( until 10 November 2020 )
                             </li>
                             <li>
-                                Point Ini disesuaikan dengan konten
+                                Review Paper by Reviewer ( 10 - 17 November 2020 )
                             </li>
                             <li>
-                                Point Ini disesuaikan dengan konten
+                                Revision period ( 17 - 24 November 2020 )
                             </li>
                             <li>
-                                Point Ini disesuaikan dengan konten
+                                Announcement ( 4 Desember 2020 )
                             </li>
                         </ul>
                        

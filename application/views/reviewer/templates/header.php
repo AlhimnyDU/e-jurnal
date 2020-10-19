@@ -33,9 +33,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong>Mesin@itenas.ac.id
-                    &nbsp;&nbsp;
-                    <strong>Telepon: </strong>022 7831258
+                    <span>Hello, <?php echo strtoupper($this->session->userdata('username')); ?></span>
                 </div>
 
             </div>
@@ -53,7 +51,6 @@
                 <a class="navbar-brand" href="<?php echo base_url() ?>home">
                     <img src="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" />
                 </a>
-
             </div>
         </div>
     </div>
@@ -66,6 +63,7 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active" href="<?php echo site_url('user') ?>">Dashboard</a></li>
                             <li><a class="menu-top" href="<?php echo site_url('login/logout') ?>">Log Out</a></li>
+                            
                         </ul>
                     </div>
                 </div>

@@ -31,9 +31,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong>Mesin@itenas.ac.id
+                    <strong>Email: </strong>seminar.ratmi@itenas.ac.id
                     &nbsp;&nbsp;
-                    <strong>Telepon: </strong>022 7831258
+                    <strong>Phone: </strong>+62 852 2170 8915
                 </div>
 
             </div>

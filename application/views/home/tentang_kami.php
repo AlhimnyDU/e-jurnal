@@ -1,12 +1,12 @@
 <!--page title section-->
-<section class="inner_cover parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url() ?>assets/homepage/assets/img/bg/inner_cover.png">
+<section class="inner_cover parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url() ?>assets/homepage/assets/img/bg/bg2.jpg">
     <div class="overlay_dark"></div>
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col-12">
                 <div class="inner_cover_content">
                     <h3>
-                        Tentang Kami
+                        About
                     </h3>
                 </div>
             </div>
@@ -14,8 +14,8 @@
 
         <div class="breadcrumbs">
             <ul>
-                <li><a href="#">Home</a>  |  </li>
-                <li><a href="#"><span>Tentang Kami</span></a>   </li>
+                <li><a href="<?php echo base_url() ?>home">Home</a>  |  </li>
+                <li><a href="#"><span>About</span></a>   </li>
 
             </ul>
         </div>
@@ -28,246 +28,22 @@
     <div class="container">
         <div class="section_title">
             <h3 class="title">
-                About Our Speakers
+                About US
             </h3>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing eli. Integer iaculis in lacus a sollicitudin. Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
+                <p align="justify">
+                Seminar Nasional Rekayasa dan Aplikasi Teknik Mesin di Industri merupakan agenda tahunan civitas akademika Jurusan Teknik Mesin, FTI – Itenas, kegiatan ini sudah berlangsung sejak tahun 2002. Seminar ini merupakan forum diskusi dan tukar informasi kegiatan studi dan penelitian yang telah dilakukan oleh para peneliti dari perguruan tinggi (dosen dan mahasiswa), instansi penelitian maupun praktisi industri, khususnya yang terkait dengan bidang teknik mesin, sehingga dapat meningkatan sinergi diantara keduanya
                 </p>
             </div>
             <div class="col-12 col-md-6">
-                <p>
-                    In rhoncus massa nec  sollicitudin. Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod quis. Maecenas ornare, ex in malesuada tempus.
+                <p align="justify">
+                Pada seminar kali ini, berhasil terkumpul 25 makalah yang dikelompokkan ke dalam lima sub topik yaitu Teknologi Konversi Energi, Teknologi Manufaktur dan Metrologi, Teknologi Bahan dan Material Komposit, Teknologi Perancangan dan Pengembangan Produk, dan koleksi lengkap diberikan dalam bentuk online di website Itenas.
                 </p>
             </div>
         </div>
     </div>
 </section>
 <!--about section end -->
-
-<!--speaker section-->
-<section class="pb100">
-    <div class="row justify-content-center no-gutters">
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/speakers/s1.png" alt="speaker name">
-                    <div class="info_box">
-                        <h5 class="name">Patricia Stone</h5>
-                        <p class="position">CEO Company</p>
-                    </div>
-                </div>
-                <div class="speaker_social">
-                    <p>
-                        Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ion-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-instagram"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/speakers/s2.png" alt="speaker name">
-                    <div class="info_box">
-                        <h5 class="name">James Oliver</h5>
-                        <p class="position">CEO Company</p>
-                    </div>
-                </div>
-                <div class="speaker_social">
-                    <p>
-                        Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ion-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-instagram"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/speakers/s3.png" alt="speaker name">
-                    <div class="info_box">
-                        <h5 class="name">Carla Banks</h5>
-                        <p class="position">CEO Company</p>
-                    </div>
-                </div>
-                <div class="speaker_social">
-                    <p>
-                        Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ion-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-instagram"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                 <div class="speaker_img">
-                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/speakers/s4.png" alt="speaker name">
-                    <div class="info_box">
-                        <h5 class="name">William Smith</h5>
-                        <p class="position">CEO Company</p>
-                    </div>
-                 </div>
-                <div class="speaker_social">
-                    <p>
-                        Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ion-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-instagram"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                 <div class="speaker_img">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/speakers/s5.png" alt="speaker name">
-                <div class="info_box">
-                    <h5 class="name">Jessica Black</h5>
-                    <p class="position">CEO Company</p>
-                </div>
-            </div>
-                <div class="speaker_social">
-                    <p>
-                        Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ion-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-instagram"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/speakers/s6.png" alt="speaker name">
-                <div class="info_box">
-                    <h5 class="name">Patricia Stone</h5>
-                    <p class="position">CEO Company</p>
-                </div>
-            </div>
-                <div class="speaker_social">
-                    <p>
-                        Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ion-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-instagram"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/speakers/s7.png" alt="speaker name">
-                <div class="info_box">
-                    <h5 class="name">Duncan Stan</h5>
-                    <p class="position">CEO Company</p>
-                </div>
-            </div>
-                <div class="speaker_social">
-                    <p>
-                        Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ion-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-instagram"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/speakers/s8.png" alt="speaker name">
-                <div class="info_box">
-                    <h5 class="name">Patricia Stone</h5>
-                    <p class="position">CEO Company</p>
-                </div>
-            </div>
-                <div class="speaker_social">
-                    <p>
-                        Ut hendrerit hendrerit nisl a accumsan. Pellentesque convallis consectetur tortor id placerat. Curabitur a pulvinar nunc. Maecenas laoreet finibus lectus, at volutpat ligula euismod.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ion-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ion-social-instagram"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--speaker section end -->

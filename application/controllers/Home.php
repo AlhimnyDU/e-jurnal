@@ -20,7 +20,7 @@ class Home extends CI_Controller {
 	 */
     public function __construct(){
 		parent::__construct();
-		$this->load->helper(array('form','url'));
+		$this->load->helper(array('form','url','download'));
         $this->load->library('session');
         $this->load->database();
 	}
@@ -51,9 +51,15 @@ class Home extends CI_Controller {
 	}
 	
 	public function arsip(){
-        $data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','left')->where('tbl_jurnal.publish','y')->get()->result();
+		$data['jurnal'] = $this->db->select('*')->from('arsip')->get()->result();
+		// $data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama, tbl_file.*')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','left')->join('tbl_file','tbl_file.id_jurnal=tbl_jurnal.id_jurnal','left')->where('tbl_jurnal.publish','y')->group_by('tbl_file.id_jurnal')->get()->result();
         $this->load->view('home/templates/header');
         $this->load->view('home/arsip',$data);
         $this->load->view('home/templates/footer');
-    }
+	}
+
+	public function download_jurnal($nama_file){    
+        force_download('./assets/upload/jurnal/arsip/'.$nama_file, NULL);
+		redirect('home/arsip');
+	}
 }

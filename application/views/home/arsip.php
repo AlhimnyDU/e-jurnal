@@ -1,12 +1,12 @@
 <!--page title section-->
-<section class="inner_cover parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url() ?>assets/homepage/assets/img/bg/inner_cover.png">
+<section class="inner_cover parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url() ?>assets/homepage/assets/img/bg/bg2.jpg">
     <div class="overlay_dark"></div>
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col-12">
                 <div class="inner_cover_content">
                     <h3>
-                        Arsip
+                        Archieve
                     </h3>
                 </div>
             </div>
@@ -15,7 +15,7 @@
         <div class="breadcrumbs">
             <ul>
                 <li><a href="#">Home</a>  |  </li>
-                <li><a href="#"><span>Arsip</span></a>   </li>
+                <li><a href="#"><span>Archieve</span></a>   </li>
 
             </ul>
         </div>
@@ -28,7 +28,7 @@
     <div class="container">
         <div class="section_title">
             <h3 class="title">
-                Arsip
+            Archieve
             </h3>
         </div>
 
@@ -38,11 +38,11 @@
                         <table class="table table-striped datatable">
                         <thead>
                             <tr>
-                                <th width="5%">No</th>
-                                <th>Judul</th>
-                                <th>Bidang</th>
-                                <th>Author</th>
-                                <th>Aksi</th>
+                                <th style="text-align:center;" width="5%">No</th>
+                                <th style="text-align:center;">Title</th>
+                                <th style="text-align:center;">Category</th>
+                                <th style="text-align:center;">Author</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,11 +50,11 @@
                         foreach($jurnal as $row){ ?>
                           <tr>
                             <td align="center"><?php echo $no ?></td>
-                            <td><?php echo $row->nama_jurnal ?></td>
+                            <td><?php echo $row->judul ?></td>
                             <td><?php echo $row->bidang ?></td>
-                            <td><?php echo $row->nama ?></td>
-                            <td>
-                                <a href="<?php echo site_url('admin/download_jurnal/'.$row->file_jurnal)?>" class="btn btn-primary btn-rounded">Download</a>
+                            <td><?php echo $row->penulis ?></td>
+                            <td align="center">
+                                <a href="<?php echo site_url('home/download_jurnal/'.$row->file)?>"><i class="fa fa-download"></i></a>
                             </td>
                           </tr>
                         <?php $no++; } ?>

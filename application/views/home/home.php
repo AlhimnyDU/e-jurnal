@@ -1,7 +1,7 @@
 <!--cover section slider -->
 <section id="home" class="home-cover">
     <div class="cover_slider owl-carousel owl-theme">
-        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/data-bg2.gif');">
+        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/bg3.jpg');">
              <div class="slider_content">
                 <div class="slider-content-inner">
                     <div class="container">
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/data-bg2.gif');">
+        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/bg2.jpg');">
             <div class="slider_content">
                 <div class="slider-content-inner">
                     <div class="container">
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/data-bg2.gif');">
+        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/bg2.jpg');">
             <div class="slider_content">
                 <div class="slider-content-inner">
                     <div class="container">
@@ -77,27 +77,27 @@
     <div class="container">
         <div class="section_title">
             <h3 class="title">
-                Tentang Kami
+                About Us
             </h3>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-                <p align="justify">
+                <h5 align="justify">
                 Seminar Nasional Rekayasa dan Aplikasi Teknik Mesin di Industri merupakan agenda tahunan
                 civitas akademika Jurusan Teknik Mesin, FTI – Itenas, kegiatan ini sudah berlangsung sejak
                 tahun 2002. Seminar ini merupakan forum diskusi dan tukar informasi kegiatan studi dan
                 penelitian yang telah dilakukan oleh para peneliti dari perguruan tinggi (dosen dan mahasiswa),
                 instansi penelitian maupun praktisi industri, khususnya yang terkait dengan bidang teknik mesin,
                 sehingga dapat meningkatan sinergi diantara keduanya.
-                </p>
+                </h5>
             </div>
             <div class="col-12 col-md-6">
-                <p align="justify">
+                <h5 align="justify">
                 Pada seminar kali ini, berhasil terkumpul 25 makalah yang dikelompokkan ke dalam lima sub
-                topik yaitu Teknologi Konversi Energi, Teknologi Manufaktur dan Metrologi, Teknologi Bahan
+                Topic yaitu Teknologi Konversi Energi, Teknologi Manufaktur dan Metrologi, Teknologi Bahan
                 dan Material Komposit, Teknologi Perancangan dan Pengembangan Produk, dan koleksi
                 lengkap diberikan dalam bentuk online di website Itenas. 
-                </p>
+                </h5>
             </div>
         </div>
     </div>
@@ -108,39 +108,46 @@
     <div class="container">
         <div class="section_title">
             <h3 class="title">
-                Susunan Pengelola
+                Our Team
             </h3>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-                <font size="4">
+                <h4>
                     Editor :
                     <br>
-                        1. M. Azis Mahardika, M.T.
+                        1. Ali.,MT
                     <br>
-                        2. Noviyanti Nugraha, M.T.
+                        2. Nuha Desi.,MT
                     <br>
-                        3. Diki Ismail P, M.T.
+                        3. Noviyanti N.,MT
                     <br>
-                        4. Alfan Ekajati L, M.T.
+                        4. Eka Taufik.,MT
                     <br>
-                        5. M. Pramuda Sirodz, M.T. 
-                </font>
+                        5. M.Pramuda., MT
+                </h4>
             </div>
             <div class="col-12 col-md-6">
-                <font size="4">
-                Pengarah :
+                <h4>
+                Reviewer :
                 <br>
-                1. DR. Agus Hermanto, Ir., M.T.
+                1. Prof., Meilinda.,Ph.D
                 <br>
-                2. Tarsisius Kristyadi, Ph.D
+                2. Dr. T. Kristiyadi
                 <br>
-                3. DR. Ing. M. Alexin Putra
+                3. Dr. Alexin Putera
                 <br>
-                4. DR. Dani Rusirawan
+                4. Encu Saefudin.,MT
                 <br>
-                5. Prof. DR. Meilinda Nurbanasari 
-                </font>
+                5. Tito Shantika.,MT
+                <br>
+                6. Ridwan.,MT
+                <br>
+                7. Marsono.,MT
+                <br>
+                8. Liman Hartawan.,MT
+                <br>
+                </h4>
             </div>
         </div>
     </div>
@@ -151,7 +158,7 @@
     <div class="container">
         <div class="section_title mb50">
             <h3 class="title">
-                Topik Makalah
+                Topic
             </h3>
         </div>
 
@@ -159,7 +166,7 @@
             <div class="col-md-4 col-12">
                 <div class="price_box active">
                     <div class="price_highlight">
-                        Topik
+                        Topic
                     </div>
                    <div class="price_header">
                        <h4>
@@ -171,7 +178,7 @@
             <div class="col-md-4 col-12">
                 <div class="price_box active">
                     <div class="price_highlight">
-                        Topik
+                        Topic
                     </div>
                    <div class="price_header">
                        <h4>
@@ -183,7 +190,7 @@
             <div class="col-md-4 col-12">
                 <div class="price_box active">
                     <div class="price_highlight">
-                        Topik
+                        Topic
                     </div>
                    <div class="price_header">
                        <h4>
@@ -195,7 +202,7 @@
             <div class="col-md-4 col-12">
                 <div class="price_box active">
                     <div class="price_highlight">
-                        Topik
+                        Topic
                     </div>
                    <div class="price_header">
                        <h4>
@@ -207,7 +214,7 @@
             <div class="col-md-4 col-12">
                 <div class="price_box active">
                     <div class="price_highlight">
-                        Topik
+                        Topic
                     </div>
                    <div class="price_header">
                        <h4>
@@ -222,47 +229,7 @@
 <!--price section end -->
 
 <!--event calender-->
-<section class="pb100">
-    <div class="container">
-        <div class="table-responsive">
-            <table class="event_calender table">
-                <thead class="event_title">
-                <tr>
-                    <th>
-                        <i class="fas fa-files"></i>
-                        <span>Makalah yang dipublikasi</span>
-                    </th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($jurnal as $j){ ?>
-                <tr>
-                    <td>
-                        <img src="<?php echo base_url() ?>assets/homepage/assets/img/cleander/ikon.png" alt="event">
-                    </td>
-                    <td class="event_date">
-                        <?php echo date_format(date_create($j->updated),"d") ?>
-                        <span><?php echo date_format(date_create($j->updated),"F Y") ?></span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h5><?= $j->nama_jurnal ?></h5>
-                            <p>Penulis : <?= $j->nama ?></p>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="<?php echo site_url('admin/download_jurnal/'.$j->file_jurnal)?>" class="btn btn-primary btn-rounded">Download</a>
-                    </td>
-                </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+
 <!--event calender end -->
 
 <!--brands section -->

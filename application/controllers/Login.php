@@ -51,7 +51,7 @@ class Login extends CI_Controller {
         		redirect('user');
 			}else if($select->role_akun == "reviewer"){
 				$this->session->set_flashdata('sukses_login',TRUE);
-				$this->session->set_userdata('username',$select->nama_admin);
+				$this->session->set_userdata('username',$select->nama);
 				$this->session->set_userdata('reviewer',"reviewer");
                 $this->session->set_userdata('id_akun',$select->id_akun);
         		redirect('reviewer');
@@ -119,12 +119,12 @@ class Login extends CI_Controller {
 		];
 
 		$this->load->library('email',$config);
-		$this->email->from('anisaputrisetyaningrum@gmail.com','E-Jurnal');
+		$this->email->from('anisaputrisetyaningrum@gmail.com','Semnas RATMI');
 		$this->email->to($this->input->post('email'));
 
 		if($type == 'verify'){
 			$this->email->subject('Account Activation');
-			$this->email->message('Click this link to verify your account : <a href="'.base_url(). 'login/verify?email='.$this->input->post('email').'&token='.urlencode($token).'">Activate</a>');
+			$this->email->message('Click this link to verify your account : <br> <a style="background-color:#1a73e8;border:1px solid #1a73e8;border-radius:4px;color:#ffffff;display:inline-block;font-family:Google Sans,Roboto-regular,San-Francisco,Helvetica,Arial;font-size:14px;text-transform:capitalize;line-height:21px;text-decoration:none;padding:9px 24px 8px 24px;white-space:nowrap;font-weight:500;text-align:center;word-break:normal;direction:ltr;width:auto!important;min-width:auto!important" href="'.base_url(). 'login/verify?email='.$this->input->post('email').'&token='.urlencode($token).'">ACTIVATE</a>');
 		}
 		$this->email->send();
 	}

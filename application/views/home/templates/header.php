@@ -47,19 +47,19 @@
                     <a class="nav-link " href="<?php echo base_url() ?>home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?php echo base_url() ?>home/tentangkami">Tentang Kami</a>
+                    <a class="nav-link " href="<?php echo base_url() ?>home/tentangkami">About</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url() ?>home/terkini">News</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link " href="<?php echo base_url() ?>home/informasi">Information</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?php echo base_url() ?>home/terkini">Terkini</a>
+                    <a class="nav-link " href="<?php echo base_url() ?>home/arsip">Archieve</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?php echo base_url() ?>home/informasi">Informasi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="<?php echo base_url() ?>home/arsip">Arsip</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="<?php echo base_url() ?>login">Registrasi</a>
+                    <a class="nav-link " href="<?php echo base_url() ?>login">Registration</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="<?php echo base_url() ?>login">Login</a>
