@@ -46,7 +46,6 @@ class Reviewer extends CI_Controller {
 		}
     }
 
-	
     public function jawaban($id){
 		$reviewer = $this->db->where('id_jurnal',$id)->get('tbl_jurnal')->row_array();
 		if($reviewer['id_reviewer']==$this->session->userdata('id_akun')){
