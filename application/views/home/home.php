@@ -10,17 +10,66 @@
         <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/bg.png');">
             
         </div>
+        
     </div>
     <div class="cover_nav">
         <ul class="cover_dots">
-            <li></li>
+        <li></li>
         </ul>
     </div>
 </section>
 <!--cover section slider end -->
 
 <!--about the event -->
-<section class="pt100 pb100">
+<section class="pt50 pb50" style="background-color:#002c82;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <center><h4 style="color:white">Submit Paper</h4></center>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-3">
+                <div class="card" style="background-color:#002c82; border:0;">
+                <center>
+                    <h2 style="color:white" id="days"></h2>
+                    <p style="color:white">Days</p>
+                </center>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="card" style="background-color:#002c82;border:0;">
+                <center>
+                    <h2 id="hours" style="color:white"></h2>
+                    <p style="color:white">Hours</p>
+                </center>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="card" style="background-color:#002c82;border:0;">
+                <center>
+                    <h2 id="minutes" style="color:white"></h2>
+                    <p style="color:white">Minutes</p>
+                </center>
+                    
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="card" style="background-color:#002c82;border:0;">
+                <center>
+                    <h2 id="seconds" style="color:white"></h2>  
+                    <p style="color:white">Seconds</p>
+                </center>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pt50 pb100">
+    <br>
+    <p id="demo"></p>
     <div class="container">
         <div class="section_title">
             <h3 class="title">
@@ -54,36 +103,36 @@
                 <h4>
                     Editor :
                     <br>
-                        1. Ali.,MT
+                        1. Ali, M.T.
                     <br>
-                        2. Nuha Desi.,MT
+                        2. Nuha Desi Anggraeni, S.Si., MT.
                     <br>
-                        3. Noviyanti N.,MT
+                        3. Noviyanti Nugraha, MT.
                     <br>
-                        4. Eka Taufik.,MT
+                        4. Eka Taufiq Firmansjah, M.T.
                     <br>
-                        5. M.Pramuda., MT
+                        5. Muhammad Pramuda Nugraha S., MT.
                 </h4>
             </div>
             <div class="col-12 col-md-6">
                 <h4>
                 Reviewer :
                 <br>
-                1. Prof., Meilinda.,Ph.D
+                1. Prof. Meilinda Nurbanasari, M.T., Ph.D.
                 <br>
-                2. Dr. T. Kristiyadi
+                2. Tarsisius Kristyadi, M.T., Ph.D.
                 <br>
-                3. Dr. Alexin Putera
+                3. Dr. Ing. Mohammad Alexin Putra
                 <br>
-                4. Encu Saefudin.,MT
+                4. Ir. Encu Saefudin, M.T.
                 <br>
-                5. Tito Shantika.,MT
+                5. Tito Shantika, S.T., M.Eng.
                 <br>
-                6. Ridwan.,MT
+                6. Muhammad Ridwan, M.T.
                 <br>
-                7. Marsono.,MT
+                7. Marsono, M.T.
                 <br>
-                8. Liman Hartawan.,MT
+                8. Liman Hartawan, M.T.
                 <br>
                 </h4>
             </div>
@@ -181,28 +230,28 @@
         <div class="brand_carousel owl-carousel">
             
             <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b1.png" alt="brand">
-            </div>
-            <!-- <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b2.jpg" alt="brand">
-            </div> --->
-            <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/b3.jpeg" alt="brand">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/M.jpg" alt="brand">
             </div>
             <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/b4.png" alt="brand">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/elkomika.jpg" alt="brand">
             </div>
             <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/bg5.jpeg" alt="brand">
-            </div>
-             <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/bg6.jpeg" alt="brand">
-            </div>
-             <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/bg7.jpeg" alt="brand">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/crossref.jpg" alt="brand">
             </div>
             <div class="brand_item text-center">
-                <img src="<?php echo base_url() ?>assets/homepage/assets/img/b4.jpeg" alt="brand">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/mesin.png" alt="brand">
+            </div>
+            <div class="brand_item text-center">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/doaj.jpg" alt="brand">
+            </div>
+            <div class="brand_item text-center">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/metal.jpg" alt="brand">
+            </div>
+            <div class="brand_item text-center">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/rh.jpg" alt="brand">
+            </div>
+            <div class="brand_item text-center">
+                <img src="<?php echo base_url() ?>assets/homepage/assets/img/brands/sinta.jpg" alt="brand">
             </div>
         </div>
     </div>

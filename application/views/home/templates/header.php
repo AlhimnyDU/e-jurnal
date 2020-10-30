@@ -8,6 +8,7 @@
     <meta name="author" content="ColorLib">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="icon" href="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" sizes="16x16" type="image/png">
+    <!-- <link rel="icon" href="<?php echo base_url() ?>assets/homepage/assets/img/brands/itenas.png" sizes="16x16" type="image/png"> -->
     <!-- ========== Title ========== -->
     <title> RATMI - Seminar Nasional Rekayasa Teknik Mesin Industri</title>
     <!-- ========== Favicon Ico ========== -->
@@ -37,7 +38,7 @@
 <header class="header navbar fixed-top navbar-expand-md sticky_header">
     <div class="container">
         <a class="navbar-brand logo" href="<?php echo base_url() ?>home">
-            <img src="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" alt="Evento">
+            <img src="<?php echo base_url() ?>assets/homepage/assets/img/logoss.png" alt="Evento">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headernav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="lnr lnr-text-align-right"></span>

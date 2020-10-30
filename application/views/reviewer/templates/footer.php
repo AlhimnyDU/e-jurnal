@@ -2,7 +2,7 @@
             <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                © SEMINAR NASIONAL REKAYASA DAN APLIKASI TEKNIK MESIN DI INDUSTRI
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | SEMNAS RATMI
                 </div>
             </div>
             </div>

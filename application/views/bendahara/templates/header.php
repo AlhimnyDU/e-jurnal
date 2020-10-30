@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="<?php echo base_url() ?>home">
-                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" />
+                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/logoss.png" />
                 </a>
             </div>
         </div>

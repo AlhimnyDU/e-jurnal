@@ -9,7 +9,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>User | E-Jurnal</title>
+    <title>Reviewer | RATMI</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
@@ -50,7 +50,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="<?php echo base_url() ?>home">
-                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" />
+                    <img src="<?php echo base_url() ?>assets/homepage/assets/img/logoss.png" />
                 </a>
             </div>
         </div>

@@ -95,7 +95,15 @@
                 </div>
                 <br>
             </div>
-            
+            <div class="col-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                    <h4>Seminar RATMI XIX</h4>
+                    <p>This seminar on 17 Desember 2020</p>
+                    </div>
+                </div>
+                <br>
+            </div>
         </div>
     </div>
 </section>

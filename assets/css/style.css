@@ -181,7 +181,7 @@ header {
 }
 
 .navbar-inverse {
-    background-color:#241b45;
+    background-color:#002c82;
     border-color: transparent;
 }
 
@@ -200,7 +200,7 @@ footer {
     padding: 10px;
     color: #fff;
     font-size: 12px;
-    background-color:#241b45;
+    background-color:#002c82;
 }
 
     footer a, footer a:hover {

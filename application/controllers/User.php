@@ -23,6 +23,7 @@ class User extends CI_Controller {
 		$this->load->helper(array('form','url'));
 		$this->load->library('session');
 		$this->load->library('upload');
+		$this->load->library('email');
 		$this->load->model('Login_model');
 		$this->load->database();
 	}
@@ -133,6 +134,17 @@ class User extends CI_Controller {
 				'updated' => date('Y-m-d H:i:s')
 			);
 			$insert = $this->db->insert('tbl_file',$jurnal);
+			$config['smtp_host'] = 'seminar.ratmi.itenas.ac.id';
+			$config['smtp_port'] = 465;
+			$config['smtp_user'] = 'seratmi@seminar.ratmi.itenas.ac.id';
+			$config['smtp_pass'] = '1t3n4$ADMIN';
+			$this->email->initialize($config);
+			$this->email->from('seratmi@seminar.ratmi.itenas.ac.id', 'Semnas RATMI XIX');
+			$this->email->to('seminar.ratmi@itenas.ac.id');
+			$this->email->set_mailtype("html");
+			$this->email->subject('SEMNAS RATMI XIX - [New] Submit Paper');
+			$this->email->message('Prosiding atas nama <b>'.$nama_akun['nama'].'</b> telah diupload oleh yang bersangkutan <br> <br> Silahkan lakukan pengecekan ke web ( http://seminar.ratmi.itenas.ac.id ) dan segera pilih reviewer untuk mereview paper tersebut. Atas perhatiannya kami ucapkan terima kasih. <br><br><br> Hormat Kami, <br><br> SEMNAS-RATMI XIX <br><br> <i>*) Pesan ini dikirim oleh sistem </i>');
+		    $this->email->send();
 			$this->session->set_flashdata('sukses_add',TRUE);
 		}else{
 			$this->session->set_flashdata('error_add',TRUE);
