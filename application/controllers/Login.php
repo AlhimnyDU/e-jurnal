@@ -23,6 +23,7 @@ class Login extends CI_Controller {
 		$this->load->model('Login_model');
 		$this->load->helper(array('form','url'));
 		$this->load->library('session');
+		$this->load->library('email');
 	}
 
 	public function index(){
@@ -98,8 +99,9 @@ class Login extends CI_Controller {
 		$this->db->insert('user_token', $user_token);
         $query =  $this->Login_model->insert('tbl_akun',$data);
         if($query){
+            $this->_sendEmail($token,'verify');
 			$this->session->set_flashdata('sukses_registrasi',"Tambah Berhasil");
-			$this->_sendEmail($token,'verify');
+			
         }else{
         	$this->session->set_flashdata('gagal_registrasi',"Tambah Gagal");
         }
@@ -107,26 +109,38 @@ class Login extends CI_Controller {
 	}
 
 	private function _sendEmail($token,$type){
-		$config = [
-			'protocol'  => 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_user' => 'anisaputrisetyaningrum@gmail.com',
-			'smtp_pass' => 'Anisa_Putri230300',
-			'smtp_port' =>  465,
-			'mailtype'  => 'html',
-			'charset'   => 'utf-8',
-			'newline'   => "\r\n"
-		];
+	    $config['smtp_host'] = 'seminar.ratmi.itenas.ac.id';
+        $config['smtp_port'] = 465;
+        $config['smtp_user'] = 'seratmi@seminar.ratmi.itenas.ac.id';
+        $config['smtp_pass'] = '1t3n4$ADMIN';
+        $this->email->initialize($config);
+        $this->email->from('seratmi@seminar.ratmi.itenas.ac.id', 'Semnas RATMI XIX');
+        $this->email->to($this->input->post('email'));
+        $this->email->set_mailtype("html");
+// 		$config = [
+// 			'protocol'  => 'smtp',
+// 			'smtp_host' => 'ssl://smtp.googlemail.com',
+// 			'smtp_user' => 'seminar.ratmi@itenas.ac.id',
+// 			'smtp_pass' => 'RATMI2020',
+// 			'smtp_port' =>  465,
+// 			'mailtype'  => 'html',
+// 			'charset'   => 'utf-8',
+// 			'newline'   => "\r\n"
+// 		];
 
-		$this->load->library('email',$config);
-		$this->email->from('anisaputrisetyaningrum@gmail.com','Semnas RATMI');
-		$this->email->to($this->input->post('email'));
+// 		$this->load->library('email',$config);
+// 		$this->email->from('anisaputrisetyaningrum@gmail.com','Semnas RATMI');
+// 		$this->email->to($this->input->post('email'));
 
 		if($type == 'verify'){
 			$this->email->subject('Account Activation');
 			$this->email->message('Click this link to verify your account : <br> <a style="background-color:#1a73e8;border:1px solid #1a73e8;border-radius:4px;color:#ffffff;display:inline-block;font-family:Google Sans,Roboto-regular,San-Francisco,Helvetica,Arial;font-size:14px;text-transform:capitalize;line-height:21px;text-decoration:none;padding:9px 24px 8px 24px;white-space:nowrap;font-weight:500;text-align:center;word-break:normal;direction:ltr;width:auto!important;min-width:auto!important" href="'.base_url(). 'login/verify?email='.$this->input->post('email').'&token='.urlencode($token).'">ACTIVATE</a>');
+		
+		    $this->email->send();
+		    
 		}
-		$this->email->send();
+		
+		
 	}
 
 	public function logout(){

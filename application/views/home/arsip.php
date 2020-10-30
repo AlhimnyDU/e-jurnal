@@ -1,5 +1,5 @@
 <!--page title section-->
-<section class="inner_cover parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url() ?>assets/homepage/assets/img/bg/bg2.jpg">
+<section class="inner_cover parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url() ?>assets/homepage/assets/img/bg/bg.png">
     <div class="overlay_dark"></div>
     <div class="container">
         <div class="row justify-content-center align-items-center">

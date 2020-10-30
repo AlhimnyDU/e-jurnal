@@ -30,7 +30,7 @@
         swal({
             icon: 'success',
             title: 'Registrasi berhasil',
-            text: "Cek inbox email, untuk aktivasi akun"
+            text: "Silahkan buka inbox email Anda untuk Aktivasi Akun"
         });
     </script>
     <?php endif; ?>

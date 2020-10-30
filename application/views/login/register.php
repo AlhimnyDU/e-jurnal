@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Registrasi Akun</h4>
+                    <h4 class="page-head-line">Account Registration</h4>
 
                 </div>
 
@@ -12,17 +12,17 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                         <div class="panel-heading">
-                           Daftarkan data diri 
+                           Enter Detail of your Account 
                         </div>
                         <div class="panel-body">
                         <form method="post" action="<?php echo site_url('login/addAkun')?>" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="nama" placeholder="Isikan Nama Lengkap" />
+                                <label for="exampleInputEmail1">Full Name</label>
+                                <input type="text" class="form-control" name="nama" placeholder="Enter your fullname" />
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Lahir</label>
-                                <input type="date" class="form-control" name="tgl_lahir" placeholder="Isikan Tanggal Lahir" />
+                                <label for="exampleInputEmail1">Date of Birth</label>
+                                <input type="date" class="form-control" name="tgl_lahir" placeholder="Choose your Date of birth" />
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
@@ -33,16 +33,16 @@
                                 <input type="password" class="form-control" name="password" placeholder="Password" />
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Asal Institusi/Perguruan Tinggi</label>
-                                <input type="text" class="form-control" name="asal_institusi" placeholder="Isikan Nama Institusi"/>
+                                <label for="exampleInputEmail1">Instantion or University</label>
+                                <input type="text" class="form-control" name="asal_institusi" placeholder="Enter Instantion or University"/>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Telepon</label>
-                                <input type="text" class="form-control" name="telp" placeholder="Isikan Nomor Telepon"/>
+                                <label for="exampleInputEmail1">Phone Number</label>
+                                <input type="text" class="form-control" name="telp" placeholder="Enter your phone number"/>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Alamat</label>
-                                <textarea class="form-control" name="alamat" placeholder="Isikan Alamat" ></textarea>
+                                <label for="exampleInputEmail1">Address</label>
+                                <textarea class="form-control" name="alamat" placeholder="Enter your address" ></textarea>
                             </div>
                             <center><button type="submit" class="btn btn-primary">Submit</button></center>
                         </form>

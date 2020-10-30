@@ -23,6 +23,7 @@ class Admin extends CI_Controller {
 		$this->load->helper(array('form','url','download'));
 		$this->load->library('session');
         $this->load->library('upload');
+         $this->load->library('email');
         $this->load->model('Login_model');
 		$this->load->database();
 	}
@@ -135,6 +136,21 @@ class Admin extends CI_Controller {
 		);
         $query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
         if($query){
+            $toemail = $this->db->select('*')->from('tbl_akun')->where('id_akun',$this->input->post('reviewer1'))->or_where('id_akun',$this->input->post('reviewer2'))->get()->result();
+            foreach($toemail as $e){
+                $config['smtp_host'] = 'seminar.ratmi.itenas.ac.id';
+                $config['smtp_port'] = 465;
+                $config['smtp_user'] = 'seratmi@seminar.ratmi.itenas.ac.id';
+                $config['smtp_pass'] = '1t3n4$ADMIN';
+                $this->email->initialize($config);
+                $this->email->from('seratmi@seminar.ratmi.itenas.ac.id', 'Semnas RATMI XIX');
+                $this->email->to($e->email);
+                $this->email->set_mailtype("html");
+                $this->email->subject('Review Paper - RATMI XIX');
+        			$this->email->message('<b>Yth. '.$e->nama.'</b> <br> <br> Kami selaku Admin Seminar Nasional Rekayasa dan Aplikasi Teknik Mesin di Industri memohon bantuan kepada Bapak/Ibu untuk mengulas (review) paper/proceeding dari peserta SEMNAS RATMI ini. Untuk informasi lebih lanjut silahkan lakukan Login di website kami ( http://seminar.ratmi.itenas.ac.id ). Atas perhatiannya kami ucapkan terima kasih. <br><br><br> Hormat Kami, <br><br> Admin SEMNAS-RATMI XIX');
+		
+		    $this->email->send();
+            }
 			$this->session->set_flashdata('sukses_update',"update Berhasil");
         }else{
         	$this->session->set_flashdata('gagal_update',"update Gagal");

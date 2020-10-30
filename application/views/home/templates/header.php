@@ -7,6 +7,7 @@
     <meta name="keywords" content="Evento , Event , Html, Template">
     <meta name="author" content="ColorLib">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" sizes="16x16" type="image/png">
     <!-- ========== Title ========== -->
     <title> RATMI - Seminar Nasional Rekayasa Teknik Mesin Industri</title>
     <!-- ========== Favicon Ico ========== -->
@@ -59,7 +60,7 @@
                     <a class="nav-link " href="<?php echo base_url() ?>home/arsip">Archieve</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?php echo base_url() ?>login">Registration</a>
+                    <a class="nav-link " href="<?php echo base_url() ?>login/register">Registration</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="<?php echo base_url() ?>login">Login</a>

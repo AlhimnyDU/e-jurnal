@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <link rel="icon" href="<?php echo base_url() ?>assets/homepage/assets/img/logos.png" sizes="16x16" type="image/png">
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Administrator | E-Jurnal</title>
+    <title>Administrator | RATMI</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
