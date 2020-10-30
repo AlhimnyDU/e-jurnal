@@ -91,7 +91,7 @@
 </section>
 <!--about the event end -->
 
-<section class="pb100">
+<section class="pb50">
     <div class="container">
         <div class="section_title">
             <h3 class="title">
