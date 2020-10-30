@@ -139,9 +139,8 @@
         </div>
     </div>
 </section>
-
 <!--Price section-->
-<section class="pt100 pb100">
+<section class="pt50 pb100">
     <div class="container">
         <div class="section_title mb50">
             <h3 class="title">
