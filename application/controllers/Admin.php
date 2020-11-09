@@ -138,6 +138,7 @@ class Admin extends CI_Controller {
         if($query){
             $toemail = $this->db->select('*')->from('tbl_akun')->where('id_akun',$this->input->post('reviewer1'))->or_where('id_akun',$this->input->post('reviewer2'))->get()->result();
             foreach($toemail as $e){
+				$jurnal = $this->db->select('tbl_akun.*, tbl_jurnal.*')->from('tbl_jurnal')->where('tbl_jurnal.id_jurnal',$id)->join('tbl_jurnal','tbl_jurnal.id_akun=tbl_akun.id_akun','left')->get()->row_array();
                 $config['smtp_host'] = 'seminar.ratmi.itenas.ac.id';
                 $config['smtp_port'] = 465;
                 $config['smtp_user'] = 'seratmi@seminar.ratmi.itenas.ac.id';
@@ -147,7 +148,7 @@ class Admin extends CI_Controller {
                 $this->email->to($e->email);
                 $this->email->set_mailtype("html");
                 $this->email->subject('Review Paper - RATMI XIX');
-        			$this->email->message('<b>Yth. '.$e->nama.'</b> <br> <br> Kami selaku Admin Seminar Nasional Rekayasa dan Aplikasi Teknik Mesin di Industri memohon bantuan kepada Bapak/Ibu untuk mengulas (review) paper/proceeding dari peserta SEMNAS RATMI ini. Untuk informasi lebih lanjut silahkan lakukan Login di website kami ( http://seminar.ratmi.itenas.ac.id ). Atas perhatiannya kami ucapkan terima kasih. <br><br><br> Hormat Kami, <br><br> Admin SEMNAS-RATMI XIX');
+        		$this->email->message('<b>Yth. '.$e->nama.'</b> <br> <br> Kami selaku Admin Seminar Nasional Rekayasa dan Aplikasi Teknik Mesin di Industri memohon bantuan kepada Bapak/Ibu untuk mengulas (review) paper/proceeding dari peserta SEMNAS RATMI atas nama '.$jurnal['nama'].' yang berjudul "'.$jurnal['nama_jurnal'].'", kami mohon agar Bapak/Ibu dapat melakukan review paper dalam jangka waktu satu minggu dimulai ketika munculnya email ini. Untuk melakukan review mengenai paper yang perlu di-review silahkan lakukan Login di website kami ( http://seminar.ratmi.itenas.ac.id ). Atas perhatiannya kami ucapkan terima kasih. <br><br><br> Hormat Kami, <br><br> Admin SEMNAS-RATMI XIX');
 		
 		    $this->email->send();
             }

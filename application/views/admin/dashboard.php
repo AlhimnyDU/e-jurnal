@@ -28,8 +28,8 @@
           <div class="dashboard-div-wrapper bk-clr-three">
             <i class="fa fa-file dashboard-div-icon"></i>
             <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="<?php echo $jml_jurnal_rev['total'] ?>" aria-valuemin="0" aria-valuemax="<?php echo $jml_jurnal['total'] ?>" style="width: <?php $p_jurnal_rev = $jml_jurnal_rev['total']/$jml_jurnal['total']*100; echo $p_jurnal_rev; ?>%"></div>
-            </div>
+                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="<?php echo $jml_jurnal_rev['total'] ?>" aria-valuemin="0" aria-valuemax="<?php echo $jml_jurnal['total'] ?>" style="width: <?php $p_jurnal_rev = $jml_jurnal_rev['total']/$jml_jurnal['total']*100; echo $p_jurnal_rev; ?>%"></div>
+                </div>
             <h5>Revisi Jurnal Upload Jurnal (<?php echo $jml_jurnal_rev['total'] ?>)</h5>
           </div>
         </div>
@@ -73,7 +73,7 @@
                             <td><?php echo $row->bidang ?></td>
                             <td><?php echo $row->nama ?></td>
                             <td>
-                            <?php $no=1;
+                            <?php
                               if($row->file_bayar!=NULL){ ?>
                               <a class="btn btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | 
                               <?php }?>

@@ -1,13 +1,13 @@
 <!--cover section slider -->
 <section id="home" class="home-cover">
     <div class="cover_slider owl-carousel owl-theme">
-        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/bg.png');">
+        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/REVBanner_Ratmi-09.jpg');">
 
         </div>
-        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/bg.png');">
+        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/REVBanner_Ratmi-09.jpg');">
            
         </div>
-        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/bg.png');">
+        <div class="cover_item" style="background: url('<?php echo base_url() ?>assets/homepage/assets/img/bg/REVBanner_Ratmi-09.jpg');">
             
         </div>
         

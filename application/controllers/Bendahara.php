@@ -30,6 +30,7 @@ class Bendahara extends CI_Controller {
 	public function index(){
         if($this->session->userdata('username')){
 			if($this->session->userdata('bendahara')){
+				$data['seminar'] = $this->db->select('tbl_seminar.*, tbl_akun.nama, tbl_akun.telp')->from('tbl_seminar')->join('tbl_akun','tbl_akun.id_akun=tbl_seminar.id_akun','LEFT')->get()->result();
                 $data['jurnal'] = $this->db->select('tbl_jurnal.*, tbl_akun.nama, tbl_akun.telp')->from('tbl_jurnal')->join('tbl_akun','tbl_akun.id_akun=tbl_jurnal.id_akun','LEFT')->get()->result();
                 $this->load->view('bendahara/templates/header');
                 $this->load->view('bendahara/dashboard',$data);

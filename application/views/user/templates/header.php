@@ -65,6 +65,7 @@
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top" href="#dashboard"  data-toggle="tab">Paper</a></li>
+                            <li><a class="menu-top" href="#seminar"  data-toggle="tab">Seminar</a></li>
                             <li><a class="menu-top" href="#editprofile"  data-toggle="tab">Edit Profile</a></li>
                             <li><a class="menu-top" href="<?php echo site_url('login/logout') ?>">Log Out</a></li>
                         </ul>
