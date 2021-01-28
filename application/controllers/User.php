@@ -81,7 +81,7 @@ class User extends CI_Controller {
 	
 	public function upload_revisi(){
         $config['upload_path']          = './assets/upload/jurnal/';
-        $config['allowed_types']        = 'pdf';
+        $config['allowed_types']        = 'pdf|doc|docx';
         $this->upload->initialize($config);
 		$this->upload->do_upload('file_revisi');
 		return $this->upload->data('file_name');
@@ -110,7 +110,7 @@ class User extends CI_Controller {
 		$nama_akun = $this->db->select('nama')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
 		$filename = $nama_akun['nama']."_".$this->input->post('nama_jurnal');
 		$config['upload_path']          = './assets/upload/jurnal/';
-		$config['allowed_types']        = 'pdf';
+		$config['allowed_types']        = 'pdf|doc|docx';
 		$config['file_name']			= $filename;
         $this->upload->initialize($config);
 		$this->upload->do_upload('file_jurnal');
@@ -156,7 +156,7 @@ class User extends CI_Controller {
 			$nama_akun = $this->db->select('nama')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
 			$filename = $nama_akun['nama']."_".$this->input->post('nama_jurnal')."_Revisi";
 			$config['upload_path']          = './assets/upload/jurnal/';
-			$config['allowed_types']        = 'pdf';
+			$config['allowed_types']        = 'pdf doc docx';
 			$config['file_name']			= $filename;
 			$this->upload->initialize($config);
 			$this->upload->do_upload('file_revisi');
@@ -168,6 +168,22 @@ class User extends CI_Controller {
 				'updated' =>  date('Y-m-d H:i:s')
 			);
 			$query =  $this->Login_model->update('tbl_jurnal','id_jurnal',$id,$data);
+			// $toemail = $this->db->select('*')->from('tbl_akun')->where('id_akun',$this->input->post('reviewer1'))->or_where('id_akun',$this->input->post('reviewer2'))->get()->result();
+            // foreach($toemail as $e){
+			// 	$jurnal = $this->db->select('tbl_akun.*, tbl_jurnal.*')->from('tbl_jurnal')->where('tbl_jurnal.id_jurnal',$id)->join('tbl_jurnal','tbl_jurnal.id_akun=tbl_akun.id_akun','left')->get()->row_array();
+            //     $config['smtp_host'] = 'seminar.ratmi.itenas.ac.id';
+            //     $config['smtp_port'] = 465;
+            //     $config['smtp_user'] = 'seratmi@seminar.ratmi.itenas.ac.id';
+            //     $config['smtp_pass'] = '1t3n4$ADMIN';
+            //     $this->email->initialize($config);
+            //     $this->email->from('seratmi@seminar.ratmi.itenas.ac.id', 'Semnas RATMI XIX');
+            //     $this->email->to($e->email);
+            //     $this->email->set_mailtype("html");
+            //     $this->email->subject('Review Paper - RATMI XIX');
+        	// 	$this->email->message('<b>Yth. '.$e->nama.'</b> <br> <br> Kami selaku Admin Seminar Nasional Rekayasa dan Aplikasi Teknik Mesin di Industri memohon bantuan kepada Bapak/Ibu untuk mengulas <b>Revisi</b> (review) paper/proceeding dari peserta SEMNAS RATMI atas nama '.$jurnal['nama'].' yang berjudul "'.$jurnal['nama_jurnal'].'". Untuk melakukan review mengenai paper yang perlu di-review silahkan lakukan Login di website kami ( http://seminar.ratmi.itenas.ac.id ). Atas perhatiannya kami ucapkan terima kasih. <br><br><br> Hormat Kami, <br><br> Admin SEMNAS-RATMI XIX');
+		
+		    // $this->email->send();
+            // }
 			if($query){
 				$jurnal = array(
 					'file_jurnal' => $this->upload->data('file_name'),
@@ -197,5 +213,35 @@ class User extends CI_Controller {
 			$this->session->set_flashdata('error_update',"Update Gagal");
 		}
 		redirect('user');
-}
+	}
+	public function addSeminar(){
+		$nama_akun = $this->db->select('nama')->from('tbl_akun')->where('id_akun', $this->session->userdata('id_akun'))->get()->row_array();
+		$filename = "PembayaranSeminar_".$nama_akun['nama'];
+		$config['upload_path']          = './assets/upload/bayar/';
+		$config['allowed_types']        = 'pdf|jpg|jpeg';
+		$config['file_name']			= $filename;
+        $this->upload->initialize($config);
+		$this->upload->do_upload('file_bayar');
+		$data = array(
+			'file_bayar' => $this->upload->data('file_name'),
+			'id_akun'	=> $this->session->userdata('id_akun'),
+			'created' => date('Y-m-d H:i:s'),
+			'updated' => date('Y-m-d H:i:s')
+		);
+		$insert = $this->db->insert('tbl_seminar',$data);
+		$config['smtp_host'] = 'seminar.ratmi.itenas.ac.id';
+		$config['smtp_port'] = 465;
+		$config['smtp_user'] = 'seratmi@seminar.ratmi.itenas.ac.id';
+		$config['smtp_pass'] = '1t3n4$ADMIN';
+		$this->email->initialize($config);
+		$this->email->from('seratmi@seminar.ratmi.itenas.ac.id', 'Semnas RATMI XIX');
+		$this->email->to('seminar.ratmi@itenas.ac.id');
+		$this->email->set_mailtype("html");
+		$this->email->subject('SEMNAS RATMI XIX - [New] Participant of Seminar');
+		$this->email->message('Peserta seminar atas nama <b>'.$nama_akun['nama'].'</b> telah mengupload bukti pembayaran seminar. <br> <br> Silahkan lakukan pengecekan ke web ( http://seminar.ratmi.itenas.ac.id ). Atas perhatiannya kami ucapkan terima kasih. <br><br><br> Hormat Kami, <br><br> SEMNAS-RATMI XIX <br><br> <i>*) Pesan ini dikirim oleh sistem </i>');
+		$this->email->send();
+		$this->session->set_flashdata('sukses_bayar',TRUE);
+		redirect('user');
+	}
+
 }

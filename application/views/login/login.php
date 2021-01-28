@@ -31,7 +31,7 @@
                         <br />
                         <ul>
                             <li>
-                                Registration and submit paper ( until 10 November 2020 )
+                                Registration and submit paper ( until 17 November 2020 )
                             </li>
                             <li>
                                 Review Paper by Reviewer ( 10 - 17 November 2020 )

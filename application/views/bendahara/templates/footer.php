@@ -36,6 +36,16 @@
             });
         } );
     </script>
+     <script>
+        $(document).ready( function () {
+            $('.datatable2').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
+        } );
+    </script>
     <?php if ($this->session->flashdata('sukses_login')): ?>
     <script>
         swal({

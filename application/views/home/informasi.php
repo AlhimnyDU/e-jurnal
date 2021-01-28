@@ -45,7 +45,7 @@
                 <div class="card">
                     <div class="card-body">
                     <h4>Registration</h4>
-                    <p>Registration until 10 November 2020</p>
+                    <p>Registration until 17 November 2020</p>
                     </div>
                 </div>
                 <br>
@@ -54,7 +54,7 @@
                 <div class="card">
                     <div class="card-body">
                     <h4>Submit Paper (Proceeding)</h4>
-                    <p>Sumit your paper until 10 November 2020, you need to read <a class="btn btn-primary btn-rounded" href="<?php echo base_url() ?>assets/upload/Format_Penulisan_Makalah_RATMI_XIX.pdf"><i class="fa fa-file"> Format Paper</i></a> .</p>
+                    <p>Sumit your paper until 17 November 2020, you need to read <a class="btn btn-primary btn-rounded" href="<?php echo base_url() ?>assets/upload/Format_Penulisan_Makalah_RATMI_XIX.pdf"><i class="fa fa-file"> Format Paper</i></a> .</p>
                     </div>
                 </div>
                 <br>

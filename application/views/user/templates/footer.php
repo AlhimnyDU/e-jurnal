@@ -49,6 +49,16 @@
             });
         </script>
         <?php endif; ?>
+        <?php if ($this->session->flashdata('sukses_addbayar')): ?>
+        <script>
+            swal({
+                icon: 'success',
+                title: 'Success',
+                buttons: false,
+                timer: 1500
+            });
+        </script>
+        <?php endif; ?>
         <?php if ($this->session->flashdata('sukses_update')): ?>
         <script>
             swal({
@@ -63,7 +73,7 @@
         <script>
             swal({
                 icon: 'success',
-                title: 'Jurnal berhasil Diupload',
+                title: 'Paper Uploaded',
                 buttons: false,
                 timer: 1500
             });
@@ -73,7 +83,7 @@
         <script>
             swal({
                 icon: 'success',
-                title: 'Bukti Pembayaran berhasil di Upload',
+                title: 'Payment Bill Uploaded',
                 buttons: false,
                 timer: 1500
             });

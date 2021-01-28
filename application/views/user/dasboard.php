@@ -56,7 +56,7 @@
                     <form method="POST" action="<?php echo site_url('user/addJurnal')?>" enctype="multipart/form-data">
                       <label>Paper Name :</label> <input type="text" name="nama_jurnal" class="form-control" required>
                       <label>Category :</label>
-                      <select name="Category" class="form-control" required="">
+                      <select name="bidang" class="form-control" required="">
                         <option value="" disabled selected hidden>Pilih...</option>
                         <option value="TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK">TEKNOLOGI PERANCANGAN DAN PENGEMBANGAN PRODUK</option>
                         <option value="TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT">TEKNOLOGI BAHAN DAN MATERIAL KOMPOSIT</option>
@@ -65,7 +65,7 @@
                         <option value="TEKNOLOGI MANUFAKTUR DAN METROLOGI">TEKNOLOGI MANUFAKTUR DAN METROLOGI</option>
                         <option value="Lainnya">Lainnya</option>
                       </select> 
-                      <label>Upload Paper File :</label> <input type="file" class="dropify" data-height="75" name="file_jurnal" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
+                      <label>Upload Paper File :</label> <input type="file" class="dropify" data-height="75" name="file_jurnal" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf docx doc">
                       <!-- <label>Upload Payment Bill :</label> <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf"> -->
                       <label>Note :</label> <textarea rows="3" class="form-control" name="note"></textarea>
                       <input type="checkbox" required> I agree to terms and conditions.
@@ -81,6 +81,7 @@
                       <strong>Note :</strong> Please note that your paper file is correct
                     </div>
                   </div>
+                  
                   <div class="tab-pane fade" id="editprofile">
                     <center><label>Edit Profile</label></center>
                     <hr>
@@ -111,9 +112,25 @@
                             </div>
                             <center>
                             <button type="submit" class="btn btn-primary">Submit</button> | 
-                            <a class="btn btn-warning" href="" data-toggle="modal" data-target="#lupaModal"><i class="fa fa-key"></i> Ganti Password</a>
+                            <a class="btn btn-warning" href="" data-toggle="modal" data-target="#lupaModal"><i class="fa fa-key"></i> Change Password</a>
                             </center>
                     </form>
+                  </div>
+                      <div class="tab-pane fade" id="seminar">
+                        <center><label>Only Following Seminar</label></center>
+                        <hr>
+                        <span class="btn btn-primary btn-sm">Note : If you are not submit paper, you still can join our seminar. Please upload your payment <br> bill to confirm your participation</span>
+                          <hr> 
+                          <form method="POST" action="<?php echo site_url('user/addSeminar')?>" enctype="multipart/form-data">
+                          <div class="form-group">
+                            <label>Upload Payment Bill :</label> <input type="file" class="dropify" data-height="75" name="file_bayar" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf jpg jpeg">
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                          <br>
+                        <div class="panel-footer text-muted">
+                            Seminar will be start on 17 Desember 2020
+                        </div>
                   </div>
                 </div>
               </div>
@@ -121,6 +138,7 @@
           </div>
         </div>
       </div>
+      
     </div>
   </div>
   <?php
@@ -266,7 +284,7 @@
                   </div>
                   <div class="form-group">
                     <label>Upload File Revisi:</label> 
-                    <input type="file" class="dropify" data-height="75" name="file_revisi" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf">
+                    <input type="file" class="dropify" data-height="75" name="file_revisi" required="" data-max-file-size="2M" data-allowed-file-extensions="pdf doc docx">
                   </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Update</button>

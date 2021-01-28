@@ -55,9 +55,46 @@
                             <td>
                             <?php $no=1;
                               if($row->file_bayar!=NULL){ ?>
-                              <a class="btn btn-warning" href="<?php echo site_url('admin/download_tf/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a> | 
+                                <a class="btn btn-warning" href="<?php echo site_url('assets/upload/bayar/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a>
                               <?php }?>
-                              <a class="btn btn-danger" href="" data-toggle="modal" data-target="#fileModal<?php echo $row->id_jurnal?>"><i class="fa fa-file-pdf-o"></i></a>
+                            </td>
+                          </tr>
+                        <?php $no++; } ?>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="notice-board">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Tabel status pembayaran Peserta Seminar
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped datatable2">
+                        <thead>
+                            <tr>
+                                <th width="5%">No</th>
+                                <th>Nama Peserta</th>
+                                <th>Telepon</th>
+                                <th width="10%">File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php $no=1;
+                        foreach($seminar as $row){ ?>
+                          <tr>
+                            <td align="center"><?php echo $no ?></td>
+                            <td><?php echo $row->nama ?></td>
+                            <td><?php echo $row->telp ?></td>
+                            <td>
+                              <a class="btn btn-warning" href="<?php echo site_url('assets/upload/bayar/'.$row->file_bayar)?>"><i class="fa fa-dollar"></i></a>
                             </td>
                           </tr>
                         <?php $no++; } ?>
