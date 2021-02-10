@@ -14,8 +14,8 @@
 
         <div class="breadcrumbs">
             <ul>
-                <li><a href="#">Home</a>  |  </li>
-                <li><a href="#"><span>Archieve</span></a>   </li>
+                <li><a href="#">Home</a> | </li>
+                <li><a href="#"><span>Archieve</span></a> </li>
 
             </ul>
         </div>
@@ -28,39 +28,42 @@
     <div class="container">
         <div class="section_title">
             <h3 class="title">
-            Archieve
+                Archieve
             </h3>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-striped datatable">
+                <div class="table-responsive">
+                    <table class="table table-striped datatable">
                         <thead>
                             <tr>
                                 <th style="text-align:center;" width="5%">No</th>
                                 <th style="text-align:center;">Title</th>
                                 <th style="text-align:center;">Category</th>
                                 <th style="text-align:center;">Author</th>
+                                <th style="text-align:center;">URL</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php $no=1;
-                        foreach($jurnal as $row){ ?>
-                          <tr>
-                            <td align="center"><?php echo $no ?></td>
-                            <td><?php echo $row->judul ?></td>
-                            <td><?php echo $row->bidang ?></td>
-                            <td><?php echo $row->penulis ?></td>
-                            <td align="center">
-                                <a href="<?php echo site_url('home/download_jurnal/'.$row->file)?>"><i class="fa fa-download"></i></a>
-                            </td>
-                          </tr>
-                        <?php $no++; } ?>
+                            <?php $no = 1;
+                            foreach ($jurnal as $row) { ?>
+                                <tr>
+                                    <td align="center"><?php echo $no ?></td>
+                                    <td><?php echo $row->judul ?></td>
+                                    <td><?php echo $row->bidang ?></td>
+                                    <td><?php echo $row->penulis ?></td>
+                                    <td><?php echo $row->link ?></td>
+                                    <td align="center">
+                                        <a href="<?php echo site_url('home/download_jurnal/' . $row->file) ?>"><i class="fa fa-download"></i></a>
+                                    </td>
+                                </tr>
+                            <?php $no++;
+                            } ?>
                         </tbody>
-                        </table>
-                    </div>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
